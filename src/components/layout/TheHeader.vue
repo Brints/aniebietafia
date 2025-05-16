@@ -8,9 +8,28 @@
     </div>
     <nav>
       <ul class="flex space-x-10 text-sm md:text-base font-medium">
-        <li><a href="#about" class="hover:text-indigo-400 transition-colors duration-300">About</a></li>
-        <li><a href="#projects" class="hover:text-indigo-400 transition-colors duration-300">Projects</a></li>
-        <li><a href="#contact" class="hover:text-indigo-400 transition-colors duration-300">Contact</a></li>
+        <li>
+          <a
+            href="#about"
+            class="hover:text-indigo-400 hover:border-b-2 hover:border-indigo-400 transition-colors duration-300 border-b-2 border-transparent pb-1"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            href="#projects"
+            class="hover:text-indigo-400 hover:border-b-2 hover:border-indigo-400 transition-colors duration-300 border-b-2 border-transparent pb-1"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a
+            href="#contact"
+            class="hover:text-indigo-400 hover:border-b-2 hover:border-indigo-400 transition-colors duration-300 border-b-2 border-transparent pb-1"
+          >
+            Contact
+          </a>
+        </li>
       </ul>
     </nav>
   </header>

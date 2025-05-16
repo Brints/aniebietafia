@@ -11,7 +11,7 @@ withDefaults(
 
 <template>
   <article
-    :class="`bg-gray-800 text-gray-200 rounded-xl shadow-lg transition-transform hover:scale-[1.02] hover:shadow-2xl p-6 space-y-4 max-w-md w-full ${cardClass}`"
+    :class="`bg-gray-800 text-gray-200 rounded-xl shadow-lg transition-transform hover:shadow-2xl p-6 space-y-4 max-w-md w-full ${cardClass}`"
     class="flex flex-col justify-between items-start"
   >
     <!-- Header Slot -->
@@ -30,10 +30,11 @@ withDefaults(
     </div>
 
     <!-- Actions Slot -->
-    <footer class="font-roboto flex gap-4 mt-2">
+    <div class="font-roboto flex gap-4 mt-2">
       <slot name="actions" />
-    </footer>
+    </div>
   </article>
+  <!-- hover:scale-[1.02] -->
 </template>
 
 <style scoped>

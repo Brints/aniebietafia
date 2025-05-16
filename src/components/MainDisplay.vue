@@ -3,6 +3,7 @@ import TheHeader from "./layout/TheHeader.vue";
 import AboutMe from "../views/AboutMe.vue";
 import TheFooter from "./layout/TheFooter.vue";
 import ProjectsSection from "../views/ProjectsSection.vue";
+import TheSkills from "../views/TheSkills.vue";
 </script>
 
 <template>
@@ -17,6 +18,10 @@ import ProjectsSection from "../views/ProjectsSection.vue";
 
     <div class="projects-section">
       <ProjectsSection />
+    </div>
+
+    <div class="skills-section">
+      <TheSkills />
     </div>
 
     <div class="footer-section">

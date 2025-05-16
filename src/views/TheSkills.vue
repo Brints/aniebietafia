@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SkillsDisplay from "../components/layout/SkillsDisplay.vue";
+</script>
 
 <template>
   <section class="p-6 md:p-12 bg-gray-900 text-gray-300">
@@ -16,50 +18,86 @@
 
     <!-- Skills List -->
     <div class="font-lora grid gap-4 justify-center" style="grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr))">
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/java.png" alt="Java" class="w-100 h-30 mb-2" />
-        <p class="text-gray-200">Java</p>
+      <div class="col-span-full">
+        <h3 class="text-lg font-bold text-gray-300">Backend Tools</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <SkillsDisplay link="java.png" alt="Java" skill="Java" />
+          <SkillsDisplay link="c.jpeg" alt="C-Programming" skill="C Programming" />
+          <SkillsDisplay link="node.jpeg" alt="Node.js" skill="Node.js" />
+          <SkillsDisplay link="python.jpeg" alt="Python" skill="Python" />
+        </div>
       </div>
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/spring.png" alt="Spring Boot" class="w-100 h-30 mb-2" />
-        <p class="text-gray-200">Spring Boot</p>
+
+      <div class="col-span-full">
+        <h3 class="text-lg font-bold text-gray-300">Database Tools</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <SkillsDisplay link="mongodb.png" alt="MongoDB" skill="MongoDB" />
+          <SkillsDisplay link="postgres.jpeg" alt="PostgreSQL" skill="PostgreSQL" />
+        </div>
       </div>
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/nodejs.png" alt="Node.js" class="w-16 h-16 mb-2" />
-        <p class="text-gray-200">Node.js</p>
+
+      <div class="col-span-full">
+        <h3 class="text-lg font-bold text-gray-300">Frontend Tools</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <SkillsDisplay link="vue.png" alt="Vue.js" skill="Vue.js" />
+          <SkillsDisplay link="angular.png" alt="Angular" skill="Angular" />
+          <SkillsDisplay link="tailwindcss.png" alt="Tailwind CSS" skill="Tailwind CSS" />
+          <SkillsDisplay link="typescript.png" alt="TypeScript" skill="TypeScript" />
+          <SkillsDisplay link="js.jpeg" alt="JavaScript" skill="JavaScript" />
+        </div>
       </div>
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/vuejs.png" alt="Vue.js" class="w-16 h-16 mb-2" />
-        <p class="text-gray-200">Vue.js</p>
+
+      <div class="col-span-full">
+        <h3 class="text-lg font-bold text-gray-300">Backend Frameworks</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <SkillsDisplay link="express.png" alt="Express" skill="Express" />
+          <SkillsDisplay link="fastapi.png" alt="FastAPI" skill="FastAPI" />
+          <SkillsDisplay link="django.png" alt="Django" skill="Django" />
+          <SkillsDisplay link="spring.png" alt="Spring Boot" skill="Spring Boot" />
+          <SkillsDisplay link="nest.png" alt="NestJS" skill="NestJS" />
+        </div>
       </div>
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/python.png" alt="Python" class="w-16 h-16 mb-2" />
-        <p class="text-gray-200">Python</p>
+
+      <div class="col-span-full">
+        <h3 class="text-lg font-bold text-gray-300">Testing Tools</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <SkillsDisplay link="jest.png" alt="Jest" skill="Jest" />
+          <SkillsDisplay link="junit.png" alt="JUnit" skill="JUnit" />
+          <SkillsDisplay link="supertest.png" alt="Supertest" skill="Supertest" />
+          <SkillsDisplay link="mockito.png" alt="Mockito" skill="Mockito" />
+        </div>
       </div>
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/fastapi.png" alt="FastAPI" class="w-16 h-16 mb-2" />
-        <p class="text-gray-200">FastAPI</p>
+
+      <div class="col-span-full">
+        <h3 class="text-lg font-bold text-gray-300">Version Control</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <SkillsDisplay link="git.png" alt="Git" skill="Git" />
+          <SkillsDisplay link="github.png" alt="GitHub" skill="GitHub" />
+        </div>
       </div>
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/django.png" alt="Django" class="w-16 h-16 mb-2" />
-        <p class="text-gray-200">Django</p>
+
+      <div class="col-span-full">
+        <h3 class="text-lg font-bold text-gray-300">Deployment Tools</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <SkillsDisplay link="heroku.png" alt="Heroku" skill="Heroku" />
+          <SkillsDisplay link="aws.png" alt="AWS" skill="AWS" />
+          <SkillsDisplay link="docker.jpeg" alt="Docker" skill="Docker" />
+          <SkillsDisplay link="linux.png" alt="Linux" skill="Linux" />
+        </div>
       </div>
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/tailwind.png" alt="Tailwind CSS" class="w-16 h-16 mb-2" />
-        <p class="text-gray-200">Tailwind CSS</p>
-      </div>
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/mongodb.png" alt="MongoDB" class="w-16 h-16 mb-2" />
-        <p class="text-gray-200">MongoDB</p>
-      </div>
-      <div class="flex flex-col items-center w-32 mb-4">
-        <img src="../assets/skills/postgresql.png" alt="PostgreSQL" class="w-16 h-16 mb-2" />
-        <p class="text-gray-200">PostgreSQL</p>
+
+      <div class="col-span-full">
+        <h3 class="text-lg font-bold text-gray-300">Other Tools</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <SkillsDisplay link="swagger.png" alt="Swagger" skill="Swagger" />
+          <SkillsDisplay link="jwt.png" alt="JWT" skill="JWT" />
+          <SkillsDisplay link="bcrypt.png" alt="Bcrypt" skill="Bcrypt" />
+        </div>
       </div>
     </div>
   </section>
 </template>
-
+<!-- class="font-lora grid gap-4 justify-center" style="grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)) -->
 <style lang="css" scoped>
 .font-lora {
   font-family: "Lora", serif;

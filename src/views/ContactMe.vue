@@ -10,7 +10,7 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
     <section class="grid grid-cols-2 gap-4">
       <!-- Hero Section -->
       <section
-        class="font-lora relative bg-gray-900 flex items-center justify-center min-h-[220px] md:min-h-[320px] overflow-hidden pr-6 md:pr-10"
+        class="hero-section font-lora relative bg-gray-900 flex items-center justify-center min-h-[220px] md:min-h-[320px] overflow-hidden pr-6 md:pr-10"
       >
         <img
           src="../assets/images/contactme.jpeg"
@@ -26,7 +26,7 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
       </section>
 
       <section
-        class="font-lora p-6 md:p-12 bg-gray-900 text-gray-300 pl-6 md:pl-10"
+        class="form-section font-lora p-6 md:p-12 bg-gray-900 text-gray-300 pl-6 md:pl-10"
         style="border-left: 2px dotted #6366f1"
       >
         <!-- Description -->
@@ -90,4 +90,34 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
   font-family: "Roboto", sans-serif;
   font-weight: 700;
 }
+
+/* for smaller screens, remove the hero section that contains the image. let only the form section be displayed and in one column */
+@media (max-width: 768px) {
+  .hero-section {
+    display: none;
+  }
+  .form-section {
+    grid-column: 1 / -1;
+    /* remove border left */
+    border-left: none !important;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* @media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-section {
+    display: none;
+  }
+}
+.form-section {
+  grid-column: 1 / -1;
+}
+.hero-section {
+  grid-column: 1 / -1;
+} */
 </style>

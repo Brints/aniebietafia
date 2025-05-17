@@ -22,7 +22,7 @@ import ContactMe from "../views/ContactMe.vue";
       <ProjectsSection />
     </div>
 
-    <div class="skills-section">
+    <div class="skills-section" id="skills">
       <TheSkills />
     </div>
 
@@ -40,4 +40,22 @@ import ContactMe from "../views/ContactMe.vue";
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.wrapper {
+  background-color: #1f2937; /* Gray-900 */
+  color: #d1d5db; /* Gray-300 */
+}
+.header-section {
+  background-color: #1f2937; /* Gray-900 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* smaller screens */
+@media (max-width: 768px) {
+  .header-section {
+    position: fixed;
+    width: 100%;
+    z-index: 50;
+  }
+}
+</style>

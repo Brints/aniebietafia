@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-16 h-16">
+    <path d="M50,5 L95,25 L95,75 L50,95 L5,75 L5,25 Z" fill="#4A90E2" />
+    <text
+      x="50%"
+      y="50%"
+      text-anchor="middle"
+      dominant-baseline="middle"
+      font-size="40"
+      fill="#FFFFFF"
+      font-family="'Arial', sans-serif"
+    >
+      A
+    </text>
+  </svg>

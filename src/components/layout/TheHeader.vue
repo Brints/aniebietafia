@@ -2,7 +2,7 @@
 
 <template>
   <header class="bg-gray-800 text-white py-4 px-16 flex items-center justify-between">
-    <div class="roboto-about-me text-2xl font-bold flex flex-col items-center">
+    <div class="logo roboto-about-me text-2xl font-bold flex flex-col items-center">
       <h2>Aniebiet <span class="text-amber-700 uppercase">Afia</span></h2>
       <h2 class="text-indigo-400">Portfolio</h2>
     </div>
@@ -81,5 +81,12 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+}
+
+/* smaller screens */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.25rem;
+  }
 }
 </style>

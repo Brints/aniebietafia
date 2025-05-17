@@ -3,6 +3,7 @@ import ProjectsCard from "../components/UI/ProjectsCard.vue";
 import LiveLinkButton from "../components/buttons/LiveLinkButton.vue";
 import GitHubRepoButton from "../components/buttons/GitHubRepoButton.vue";
 import TechTools from "../components/buttons/TechTools.vue";
+import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 
 const unravelDocsTools = [
   "Java",
@@ -44,7 +45,7 @@ const brintsEstateTools = [
 <template>
   <section class="p-6 md:p-12 bg-gray-900 text-gray-300">
     <!-- Title -->
-    <h2 class="font-roboto text-center text-2xl md:text-3xl font-bold text-indigo-400 mb-6">Projects</h2>
+    <BracketLikeCurve title="Projects" />
 
     <!-- Description -->
     <p

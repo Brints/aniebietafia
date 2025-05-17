@@ -16,7 +16,7 @@ const tools = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-2">
+  <div class="flex flex-wrap gap-1 justify-between items-center">
     <div
       v-for="(tool, index) in tools"
       :key="index"

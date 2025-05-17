@@ -7,7 +7,7 @@
       <h2 class="text-indigo-400">Portfolio</h2>
     </div>
     <nav>
-      <ul class="flex space-x-10 text-sm md:text-base font-medium">
+      <ul class="font-lora flex space-x-10 text-sm md:text-base font-medium">
         <li>
           <a
             href="#about"
@@ -20,6 +20,13 @@
             href="#projects"
             class="hover:text-indigo-400 hover:border-b-2 hover:border-indigo-400 transition-colors duration-300 border-b-2 border-transparent pb-1"
             >Projects</a
+          >
+        </li>
+        <li>
+          <a
+            href="#skills"
+            class="hover:text-indigo-400 hover:border-b-2 hover:border-indigo-400 transition-colors duration-300 border-b-2 border-transparent pb-1"
+            >Skills</a
           >
         </li>
         <li>
@@ -69,7 +76,7 @@
   font-style: normal;
 }
 
-.lora-about-me {
+.font-lora {
   font-family: "Lora", serif;
   font-optical-sizing: auto;
   font-weight: 400;

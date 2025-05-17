@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ContactMe from "../components/buttons/ContactMe.vue";
 import ViewResume from "../components/buttons/ViewResume.vue";
+import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 </script>
 
 <template>
@@ -20,7 +21,7 @@ import ViewResume from "../components/buttons/ViewResume.vue";
 
     <!-- Text Content -->
     <div>
-      <h2 class="roboto-about-me text-center text-2xl md:text-3xl font-bold text-indigo-400 mb-6">About Me</h2>
+      <BracketLikeCurve title="About Me" />
 
       <div class="lora-about-me space-y-4 text-base leading-relaxed">
         <p

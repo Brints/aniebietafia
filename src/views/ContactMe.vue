@@ -1,19 +1,11 @@
-<script setup lang="ts"></script>
-
-<!-- Contact me that allows a form to be filled with fullname, email and message and the message is delivered to recipients email address -->
+<script setup lang="ts">
+import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
+</script>
 
 <template>
   <main class="bg-gray-900 text-gray-300">
     <!-- Title -->
-    <div class="flex justify-center mb-6">
-      <h2 class="font-roboto text-center text-2xl md:text-3xl font-bold text-indigo-400 pb-2 relative">
-        Contact Me
-        <span
-          class="block absolute left-1/2 -translate-x-1/2 mt-2 w-[120%] h-0.5 bg-indigo-400"
-          style="bottom: 0"
-        ></span>
-      </h2>
-    </div>
+    <BracketLikeCurve title="Contact Me" />
 
     <section class="grid grid-cols-2 gap-4">
       <!-- Hero Section -->

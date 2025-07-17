@@ -49,13 +49,4 @@ import ContactMe from "../views/ContactMe.vue";
   background-color: #1f2937; /* Gray-900 */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-/* smaller screens */
-@media (max-width: 768px) {
-  .header-section {
-    position: fixed;
-    width: 100%;
-    z-index: 50;
-  }
-}
 </style>

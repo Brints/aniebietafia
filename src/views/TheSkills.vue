@@ -168,6 +168,11 @@ import BaseCard from "../components/UI/BaseCard.vue";
               shield="https://img.shields.io/badge/PNPM-F69220?style=for-the-badge&logo=pnpm&logoColor=white"
               alt="PNPM Badge"
             />
+            <SkillBadge
+                link="https://getcomposer.org/"
+                shield="https://img.shields.io/badge/MVN-885630?style=for-the-badge&logo=composer&logoColor=white"
+                alt="MVN Badge"
+            />
           </div>
         </div>
       </BaseCard>

@@ -10,7 +10,7 @@ import ContactMe from "../views/ContactMe.vue";
 
 <template>
   <div class="wrapper">
-    <div class="header-section sticky top-0 z-50 bg-gray-900 shadow-md">
+    <div class="header-section md:sticky top-0 z-50 bg-gray-900 shadow-md">
       <TheHeader />
     </div>
 

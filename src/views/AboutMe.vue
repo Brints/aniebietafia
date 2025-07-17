@@ -76,32 +76,6 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 </template>
 
 <style scoped>
-.lato-regular {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.roboto-about-me {
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
-}
-
-.noto-color-emoji-regular {
-  font-family: "Noto Color Emoji", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.playfair-display-about-me {
-  font-family: "Playfair Display", serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-}
-
 .lora-about-me {
   font-family: "Lora", serif;
   font-optical-sizing: auto;

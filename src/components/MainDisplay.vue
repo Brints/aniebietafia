@@ -6,6 +6,7 @@ import ProjectsSection from "../views/ProjectsSection.vue";
 import TheSkills from "../views/TheSkills.vue";
 import CertificationSection from "../views/CertificationSection.vue";
 import ContactMe from "../views/ContactMe.vue";
+import ElevatorPitch from "../views/ElevatorPitch.vue";
 </script>
 
 <template>
@@ -20,6 +21,10 @@ import ContactMe from "../views/ContactMe.vue";
 
     <div class="projects-section" id="projects">
       <ProjectsSection />
+    </div>
+
+    <div class="elevator-pitch-section" id="elevator-pitch">
+      <ElevatorPitch />
     </div>
 
     <div class="skills-section" id="skills">

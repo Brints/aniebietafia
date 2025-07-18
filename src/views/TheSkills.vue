@@ -169,9 +169,9 @@ import BaseCard from "../components/UI/BaseCard.vue";
               alt="PNPM Badge"
             />
             <SkillBadge
-                link="https://getcomposer.org/"
-                shield="https://img.shields.io/badge/MVN-885630?style=for-the-badge&logo=composer&logoColor=white"
-                alt="MVN Badge"
+                link="https://maven.apache.org/"
+                shield="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white"
+                alt="Maven Badge"
             />
           </div>
         </div>

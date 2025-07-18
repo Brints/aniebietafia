@@ -21,17 +21,17 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
     <!-- Certifications List -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <CertificationsCard
-        title="AWS Certified Solutions Architect - Associate"
-        description="This certification validates the ability to design and deploy scalable systems on AWS."
-        link="https://www.credly.com/badges/0c5f7a9b-fd4e-4b8c-bd1f-e0a5e7f3a0b5/public_url"
-        image="aws-solutions.jpeg"
-        alt="AWS Certified Solutions Architect - Associate"
+        title="ALX Software Engineering Certification"
+        description="This certification validates the ability to design, build and deploy scalable systems."
+        link="https://res.cloudinary.com/aniebietafia/image/upload/v1752795445/certifications/Software_Engineering_Certificate_aj3pra.png"
+        image="Software_Engineering_Certificate_aj3pra.png"
+        alt="ALX Software Engineering"
       />
       <CertificationsCard
         title="AWS Certified Developer - Associate"
         description="This certification validates the ability to develop and maintain applications on AWS."
-        link="https://www.credly.com/badges/0c5f7a9b-fd4e-4b8c-bd1f-e0a5e7f3a0b5/public_url"
-        image="aws-developer.png"
+        link="https://res.cloudinary.com/aniebietafia/image/upload/v1752796091/certifications/UC-Angular.jpg"
+        image="UC-Angular.jpg"
         alt="AWS Certified Developer - Associate"
       />
       <CertificationsCard

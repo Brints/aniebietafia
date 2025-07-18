@@ -40,6 +40,8 @@ const brintsEstateTools = [
   "JWT",
   "Bcrypt",
 ];
+
+const salesAgent = ["Java", "Spring Boot", "PostgreSQL", "MistralAI API", "Docker"];
 </script>
 
 <template>
@@ -102,21 +104,20 @@ const brintsEstateTools = [
 
       <ProjectsCard>
         <template #header>
-          <h3 class="text-lg font-semibold">MyPortfolio</h3>
+          <h3 class="text-lg font-semibold">Sales Agent</h3>
         </template>
         <template #description>
-          MyPortfolio is a personal portfolio website that showcases my skills, projects, and experience. It is built
-          using Vue.js and Tailwind CSS.
+          Sales Agent is an AI-Powered Integration tool that introduces a cutting-edge solution for business owners to discover potential leads with ease. By specifying their business type and target audience through a simple chat with a sales agent, users receive a curated list of relevant leads in an organized format. This streamlined process enhances customer outreach and supports business growth.
         </template>
         <template #tools>
-          <span class="bg-indigo-500 text-white px-2 py-1 rounded-full">Vue.js</span>
-          <span class="bg-indigo-500 text-white px-2 py-1 rounded-full">Tailwind CSS</span>
+          <h4 class="text-lg font-semibold">Tech Stack</h4>
+          <TechTools :tools="salesAgent" />
         </template>
         <template #actions>
-          <a href="https://myproject.live" target="_blank" class="action-btn bg-indigo-600 hover:bg-indigo-700">
-            Live Demo
-          </a>
-          <a href="https://example.com" target="_blank" class="action-btn bg-gray-600 hover:bg-gray-700"> View Code </a>
+          <div class="grid grid-cols-2 gap-8">
+            <LiveLinkButton link="https://github.com/telexintegrations/sales-agent" />
+            <GitHubRepoButton link="https://github.com/telexintegrations/sales-agent" />
+          </div>
         </template>
       </ProjectsCard>
 

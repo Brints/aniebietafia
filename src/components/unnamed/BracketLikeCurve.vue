@@ -45,11 +45,6 @@ const props = defineProps({
 </template>
 
 <style scoped>
-.lato-regular {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
 .roboto-text {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;

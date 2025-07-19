@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import { ref, defineProps } from 'vue';
+import { ref, defineProps, onMounted, onUnmounted } from 'vue';
 
 interface NavLink {
   name: string;
   to: string;
+  icon?: string;
 }
 
 const navLinks = ref<NavLink[]>([
-  { name: 'About', to: '#about' },
-  { name: 'Projects', to: '#projects' },
-  { name: 'Elevator Pitch', to: '#elevator-pitch' },
-  { name: 'Skills', to: '#skills' },
-  { name: 'Certifications', to: '#certifications' },
-  { name: 'Contact', to: '#contact' }
+  { name: 'About', to: '#about', icon: '👨‍💻' },
+  { name: 'Projects', to: '#projects', icon: '🚀' },
+  { name: 'Elevator Pitch', to: '#elevator-pitch', icon: '💡' },
+  { name: 'Skills', to: '#skills', icon: '⚡' },
+  { name: 'Certifications', to: '#certifications', icon: '🏆' },
+  { name: 'Contact', to: '#contact', icon: '📧' }
 ]);
 
 const props = defineProps({
@@ -21,33 +22,172 @@ const props = defineProps({
     default: false
   }
 });
+
+const activeSection = ref('about');
+
+// Smooth scroll function
+const scrollToSection = (event: Event, sectionId: string) => {
+  event.preventDefault();
+  const element = document.querySelector(sectionId);
+  if (element) {
+    // Immediately update active section when clicked
+    activeSection.value = sectionId.substring(1);
+
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+};
+
+// Intersection Observer for active section tracking
+const observeSection = () => {
+  const sections = document.querySelectorAll('section[id]');
+
+  // If no sections found, try alternative selectors
+  if (sections.length === 0) {
+    console.warn('No sections with IDs found. Make sure your sections have proper id attributes.');
+    return null;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+          activeSection.value = entry.target.id;
+        }
+      });
+    },
+    {
+      threshold: [0.1, 0.3, 0.5, 0.7],
+      rootMargin: '-100px 0px -100px 0px'
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+  return observer;
+};
+
+// Alternative: Manual scroll tracking
+const handleScroll = () => {
+  const sections = document.querySelectorAll('section[id]');
+  const scrollPosition = window.scrollY + 150; // Offset for header
+
+  sections.forEach((section) => {
+    const element = section as HTMLElement;
+    const offsetTop = element.offsetTop;
+    const offsetHeight = element.offsetHeight;
+
+    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+      activeSection.value = element.id;
+    }
+  });
+};
+
+let observer: IntersectionObserver | null = null;
+
+onMounted(() => {
+  // Try intersection observer first
+  observer = observeSection();
+
+  // Fallback to scroll listener if intersection observer fails
+  if (!observer) {
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+  }
+});
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect();
+  } else {
+    window.removeEventListener('scroll', handleScroll);
+  }
+});
+
+// Check if section is active
+const isActive = (link: NavLink) => {
+  return activeSection.value === link.to.substring(1);
+};
 </script>
 
 <template>
-  <nav>
+  <nav role="navigation" aria-label="Main navigation">
     <ul
       :class="[
         'font-lora',
         'font-medium',
         'text-sm',
         'md:text-base',
-        props.isMobile ? 'flex-col space-y-4' : 'flex space-x-10',
+        props.isMobile ? 'flex-col space-y-3' : 'flex space-x-8 lg:space-x-10',
       ]"
     >
-      <li v-for="link in navLinks" :key="link.to">
+      <li v-for="link in navLinks" :key="link.to" class="relative">
         <a
           :href="link.to"
-          class="transition-colors duration-300"
-          :class="
+          @click="scrollToSection($event, link.to)"
+          class="nav-link group relative flex items-center gap-2 transition-all duration-300 ease-in-out"
+          :class="[
             isMobile
-              ? 'block p-3 rounded-lg text-center bg-gray-700 hover:bg-gray-600 hover:text-white'
-              : 'hover:text-indigo-400 hover:border-b-2 hover:border-indigo-400 border-b-2 border-transparent pb-1'
-          "
+              ? [
+                  'p-3 rounded-xl text-center justify-center',
+                  isActive(link)
+                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
+                    : 'bg-gray-700/50 hover:bg-gray-600 hover:text-white backdrop-blur-sm'
+                ]
+              : [
+                  'px-2 py-1 rounded-md',
+                  isActive(link)
+                    ? 'text-indigo-400'
+                    : 'text-gray-300 hover:text-white'
+                ]
+          ]"
+          :aria-current="isActive(link) ? 'page' : undefined"
         >
-          {{ link.name }}
+          <!-- Icon (mobile only) -->
+          <span v-if="isMobile && link.icon" class="text-lg">{{ link.icon }}</span>
+
+          <!-- Link text -->
+          <span class="relative z-10">{{ link.name }}</span>
+
+          <!-- Desktop active indicator -->
+          <div
+            v-if="!isMobile"
+            class="absolute bottom-0 left-0 h-0.5 bg-indigo-400 transition-all duration-300 ease-out"
+            :class="isActive(link) ? 'w-full' : 'w-0 group-hover:w-full'"
+          ></div>
+
+          <!-- Desktop hover background -->
+          <div
+            v-if="!isMobile"
+            class="absolute inset-0 bg-indigo-400/10 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+
+          <!-- Active section indicator dot -->
+          <div
+            v-if="!isMobile && isActive(link)"
+            class="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse"
+          ></div>
         </a>
+
+        <!-- Mobile active indicator -->
+        <div
+          v-if="isMobile && isActive(link)"
+          class="absolute -left-1 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-indigo-400 rounded-r-full"
+        ></div>
       </li>
     </ul>
+
+    <!-- Progress indicator for desktop -->
+    <div v-if="!isMobile" class="hidden lg:block mt-4">
+      <div class="w-full h-0.5 bg-gray-700 rounded-full overflow-hidden">
+        <div
+          class="h-full bg-gradient-to-r from-indigo-400 to-amber-500 transition-all duration-500 ease-out rounded-full"
+          :style="{ width: `${((navLinks.findIndex(link => isActive(link)) + 1) / navLinks.length) * 100}%` }"
+        ></div>
+      </div>
+    </div>
   </nav>
 </template>
 

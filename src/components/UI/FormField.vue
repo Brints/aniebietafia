@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from "vue";
-import type { FormField } from "../../interfaces.ts";
+import type { FormField } from "../../interfaces/form-field.ts";
 
 defineProps<FormField>();
 

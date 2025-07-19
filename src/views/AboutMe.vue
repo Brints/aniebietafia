@@ -170,50 +170,105 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
     <div>
       <BracketLikeCurve title="About Me" />
 
-      <div class="lora-about-me space-y-4 text-base leading-relaxed">
-        <p
-            class="opacity-90 transform transition duration-700 ease-in-out translate-y-2 hover:translate-y-0 hover:opacity-100"
-        >
-          I am a passionate software engineer with a strong foundation in backend development. My expertise lies in
-          Java, Spring Boot, Node.js, NestJS, Express, TypeScript, and Python.
-        </p>
+      <div class="lora-about-me space-y-6 text-base leading-relaxed">
+        <!-- Opening Hook -->
+        <div class="relative">
+          <p class="text-lg font-medium text-gray-200 opacity-95 transform transition duration-700 ease-in-out translate-y-2 hover:translate-y-0 hover:opacity-100">
+            Building scalable solutions that bridge <span class="text-indigo-400 font-semibold">innovation</span> and
+            <span class="text-amber-500 font-semibold">reliability</span> — one line of code at a time.
+          </p>
+          <div class="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-indigo-400 to-amber-500 rounded-full opacity-60"></div>
+        </div>
 
-        <p
-            class="opacity-80 border-l-4 border-indigo-500 pl-4 transform transition duration-700 ease-in-out translate-y-3 hover:translate-y-0 hover:opacity-100"
-        >
-          My experience with Java and Spring Boot has equipped me with the skills to develop enterprise-level
-          applications, while my proficiency in Node.js and TypeScript allows me to create fast and efficient
-          server-side solutions.
-        </p>
+        <!-- Professional Overview -->
+        <div class="bg-gray-800/30 rounded-lg p-4 border-l-4 border-indigo-500 backdrop-blur-sm transform transition duration-700 ease-in-out translate-y-3 hover:translate-y-0 hover:bg-gray-800/50">
+          <p class="opacity-90 hover:opacity-100 transition-opacity duration-300">
+            As a passionate <strong class="text-indigo-300">Software Engineer</strong> with expertise in backend development,
+            I specialize in architecting robust systems using <span class="text-amber-400">Java & Spring Boot</span>,
+            <span class="text-green-400">Node.js & TypeScript</span>, and <span class="text-blue-400">Python</span>.
+            My focus lies in creating enterprise-grade applications that scale effortlessly and perform reliably under pressure.
+          </p>
+        </div>
 
-        <p
-            class="opacity-90 transform transition duration-700 ease-in-out translate-y-2 hover:translate-y-0 hover:opacity-100"
-        >
-          I am always eager to learn new technologies and improve my skills. I believe that continuous learning is key
-          to staying relevant in the ever-evolving tech landscape.
-        </p>
+        <!-- Technical Expertise -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="space-y-3">
+            <h3 class="text-indigo-400 font-semibold text-sm uppercase tracking-wide">Backend Mastery</h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <div class="w-2 h-2 bg-indigo-400 rounded-full"></div>
+                Enterprise Java & Spring Boot ecosystems
+              </li>
+              <li class="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                Modern Node.js with NestJS & Express
+              </li>
+              <li class="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                Python for rapid prototyping & APIs
+              </li>
+            </ul>
+          </div>
+          <div class="space-y-3">
+            <h3 class="text-amber-500 font-semibold text-sm uppercase tracking-wide">Core Values</h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <div class="w-2 h-2 bg-amber-400 rounded-full"></div>
+                Clean, maintainable code architecture
+              </li>
+              <li class="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <div class="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                Test-driven development practices
+              </li>
+              <li class="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                Continuous learning mindset
+              </li>
+            </ul>
+          </div>
+        </div>
 
-        <p
-            class="opacity-80 border-l-4 border-indigo-500 pl-4 transform transition duration-700 ease-in-out translate-y-3 hover:translate-y-0 hover:opacity-100"
-        >
-          I enjoy exploring new programming languages, contributing to open-source projects, and staying updated with
-          the latest trends in technology.
-        </p>
+        <!-- Personal Philosophy -->
+        <div class="relative bg-gradient-to-r from-indigo-900/20 to-amber-900/20 rounded-lg p-4 border border-indigo-500/30">
+          <div class="absolute top-2 left-2 text-indigo-400 text-2xl opacity-50">"</div>
+          <p class="italic text-gray-300 pl-6 pr-6 opacity-90 hover:opacity-100 transition-opacity duration-300">
+            I believe technology should solve real problems elegantly. Every system I build is crafted with scalability,
+            security, and user experience at its core. My approach combines technical excellence with pragmatic
+            problem-solving to deliver solutions that stand the test of time.
+          </p>
+          <div class="absolute bottom-2 right-2 text-amber-500 text-2xl opacity-50 rotate-180">"</div>
+        </div>
 
-        <p
-            class="opacity-90 transform transition duration-700 ease-in-out translate-y-2 hover:translate-y-0 hover:opacity-100"
-        >
-          I am looking forward to the next challenge in my career and am excited about the possibility of working with
-          like-minded individuals who share my passion for technology and innovation.
-        </p>
+        <!-- Current Focus -->
+        <div class="bg-gray-800/40 rounded-lg p-4 border border-gray-600">
+          <h3 class="text-emerald-400 font-semibold mb-2 flex items-center gap-2">
+            <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+            Currently Exploring
+          </h3>
+          <p class="text-sm opacity-85 hover:opacity-100 transition-opacity duration-300">
+            Diving deeper into <span class="text-indigo-300">cloud-native architectures</span>,
+            <span class="text-amber-300">microservices patterns</span>, and
+            <span class="text-green-300">AI/ML integration</span> to stay ahead of the technological curve.
+            Always seeking opportunities to contribute to open-source projects and collaborate with fellow engineers.
+          </p>
+        </div>
 
-        <p class="text-indigo-300 font-medium italic transition duration-700 ease-in-out hover:text-indigo-400">
-          Feel free to reach out to me through the contact section or connect with me on LinkedIn.
-        </p>
-
-        <p class="text-indigo-400 font-semibold text-lg animate-pulse">Let's build something great together!</p>
+        <!-- Call to Action -->
+        <div class="text-center space-y-2">
+          <p class="text-indigo-300 font-medium transition duration-700 ease-in-out hover:text-indigo-400">
+            Ready to collaborate on your next innovative project?
+          </p>
+          <p class="text-amber-400 font-semibold text-lg">
+            Let's create something
+            <span class="bg-gradient-to-r from-indigo-400 to-amber-500 bg-clip-text text-transparent animate-pulse">
+              extraordinary
+            </span>
+            together!
+          </p>
+        </div>
       </div>
 
+      <!-- Action Buttons -->
       <div class="mt-8 pb-3 flex flex-wrap justify-center gap-4">
         <ViewResume />
         <DownloadResume />

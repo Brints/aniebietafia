@@ -54,34 +54,6 @@ const skillsData: SkillsData = {
       { name: "C", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white", link: "https://en.wikipedia.org/wiki/C_(programming_language)" }
     ]
   },
-  frameworks: {
-    title: "Backend Frameworks",
-    icon: "⚡",
-    skills: [
-      { name: "Spring Boot", level: skillLevels.EXPERT, years: 3, shield: "https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white", link: "https://spring.io/projects/spring-boot" },
-      { name: "Express", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white", link: "https://expressjs.com/" },
-      { name: "FastAPI", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white", link: "https://fastapi.tiangolo.com/" },
-      { name: "Django", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white", link: "https://www.djangoproject.com/" },
-      { name: "NestJS", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white", link: "https://nestjs.com/" }
-    ]
-  },
-  databases: {
-    title: "Databases",
-    icon: "🗄️",
-    skills: [
-      { name: "MongoDB", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white", link: "https://www.mongodb.com/" },
-      { name: "PostgreSQL", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white", link: "https://www.postgresql.org/" }
-    ]
-  },
-  cloud: {
-    title: "Cloud & DevOps",
-    icon: "☁️",
-    skills: [
-      { name: "AWS", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white", link: "https://aws.amazon.com/" },
-      { name: "DigitalOcean", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white", link: "https://www.digitalocean.com/" },
-      { name: "Heroku", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white", link: "https://www.heroku.com/" }
-    ]
-  },
   frontend: {
     title: "Frontend & Build Tools",
     icon: "🎨",
@@ -108,6 +80,34 @@ const skillsData: SkillsData = {
       { name: "Maven", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white", link: "https://maven.apache.org/" },
       { name: "GraphQL", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white", link: "https://www.graphql.com/" },
       { name: "REST API", level: skillLevels.ADVANCED, years: 3, shield: "https://img.shields.io/badge/REST-000000?style=for-the-badge&logo=rest&logoColor=white", link: "https://www.restapitutorial.com/" }
+    ]
+  },
+  frameworks: {
+    title: "Backend Frameworks",
+    icon: "⚡",
+    skills: [
+      { name: "Spring Boot", level: skillLevels.EXPERT, years: 3, shield: "https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white", link: "https://spring.io/projects/spring-boot" },
+      { name: "Express", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white", link: "https://expressjs.com/" },
+      { name: "FastAPI", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white", link: "https://fastapi.tiangolo.com/" },
+      { name: "Django", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white", link: "https://www.djangoproject.com/" },
+      { name: "NestJS", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white", link: "https://nestjs.com/" }
+    ]
+  },
+  databases: {
+    title: "Databases",
+    icon: "🗄️",
+    skills: [
+      { name: "MongoDB", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white", link: "https://www.mongodb.com/" },
+      { name: "PostgreSQL", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white", link: "https://www.postgresql.org/" }
+    ]
+  },
+  cloud: {
+    title: "Cloud & DevOps",
+    icon: "☁️",
+    skills: [
+      { name: "AWS", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white", link: "https://aws.amazon.com/" },
+      { name: "DigitalOcean", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white", link: "https://www.digitalocean.com/" },
+      { name: "Heroku", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white", link: "https://www.heroku.com/" }
     ]
   }
 };
@@ -187,7 +187,7 @@ const getLevelColor = (level: SkillLevel): string => {
 <template>
   <section class="p-6 md:p-12 bg-gray-900 text-gray-300">
     <!-- Title -->
-    <BracketLikeCurve title="Skills" />
+    <BracketLikeCurve title="Awesome Skills" :animated="false"/>
 
     <!-- Enhanced Description -->
     <div class="max-w-4xl mx-auto mb-8">
@@ -226,7 +226,7 @@ const getLevelColor = (level: SkillLevel): string => {
     </div>
 
     <!-- Skills Grid -->
-    <div class="grid gap-6 md:gap-8 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+    <div class="grid gap-6 md:gap-8 grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
       <div
         v-for="(category, key, index) in filteredSkills"
         :key="key"

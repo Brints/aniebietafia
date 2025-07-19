@@ -50,7 +50,7 @@ const handleSubmit = async () => {
 <template>
   <main class="bg-gray-900 text-gray-300">
     <!-- Title -->
-    <BracketLikeCurve title="Contact Me" />
+    <BracketLikeCurve title="Contact Me" variant="accent" size="lg"/>
 
     <section class="grid grid-cols-2 gap-4">
       <!-- Hero Section -->

@@ -1,17 +1,10 @@
-export interface Project {
-  title: string;
-  description: string;
-  tools: string[];
-  liveLink?: string;
-  codeLink?: string;
-  issueLink?: string;
-}
+import type { Project } from "../interfaces/project.ts";
 
 export const projects: Project[] = [
   {
     title: "UnravelDocs (Backend)",
-    description:
-      "UnravelDocs is a document management system that allows users to upload hardcopy documents and convert them into digital format. It uses OCR technology and provides a user-friendly interface. It is built using Java and Spring Boot.",
+    description: "UnravelDocs is a document management system that allows users to upload hardcopy documents and convert them into digital format. It uses OCR technology and provides a user-friendly interface. It is built using Java and Spring Boot.",
+    detailedDescription: "A comprehensive document management solution featuring advanced OCR technology, secure file storage, and seamless digital transformation workflows. The system processes various document formats and provides intelligent text extraction with high accuracy.",
     tools: [
       "Java",
       "Spring Boot",
@@ -37,11 +30,17 @@ export const projects: Project[] = [
     ],
     liveLink: "https://unraveldocs.xyz",
     codeLink: "https://github.com/Brints/UnravelDocs",
+    category: "Backend",
+    status: "completed",
+    featured: true,
+    stats: { stars: 45, forks: 12, contributors: 1 },
+    challenges: ["OCR accuracy optimization", "Large file processing", "AWS infrastructure scaling"],
+    achievements: ["99.2% OCR accuracy", "Sub-second processing for most documents", "Scalable to 10k+ users"]
   },
   {
     title: "Brints Estate (Backend)",
-    description:
-      "Brints Estate is a real estate management system that allows users to search for properties, schedule visits, and manage their listings. It provides a comprehensive solution for real estate agents and buyers.",
+    description: "Brints Estate is a real estate management system that allows users to search for properties, schedule visits, and manage their listings. It provides a comprehensive solution for real estate agents and buyers.",
+    detailedDescription: "A full-featured real estate platform with advanced search capabilities, appointment scheduling, and comprehensive property management tools for both agents and clients.",
     tools: [
       "Node.js",
       "NestJS",
@@ -49,36 +48,100 @@ export const projects: Project[] = [
       "TypeORM",
       "Jest",
       "Supertest",
-      "Heroku",
       "JWT",
-      "Bcrypt",
+      "Swagger",
+      "Docker",
+      "Redis"
     ],
-    liveLink: "https://myproject.live",
-    codeLink: "https://github.com/Brints/nestjs-brints-group-estate",
+    codeLink: "https://github.com/Brints/brints-estate-backend",
+    category: "Backend",
+    status: "completed",
+    featured: true,
+    stats: { stars: 28, forks: 8, contributors: 2 },
+    challenges: ["Complex search algorithms", "Real-time notifications", "Data synchronization"],
+    achievements: ["Multi-criteria search", "Real-time updates", "Scalable architecture"]
   },
   {
     title: "Sales Agent (Integration)",
-    description:
-      "Sales Agent is an AI-Powered Integration tool that introduces a cutting-edge solution for business owners to discover potential leads with ease. By specifying their business type and target audience through a simple chat with a sales agent, users receive a curated list of relevant leads in an organized format. This streamlined process enhances customer outreach and supports business growth.",
-    tools: ["Java", "Spring Boot", "PostgreSQL", "MistralAI API", "Docker"],
+    description: "An AI-driven sales integration tool that automates lead generation and customer outreach, providing businesses with a streamlined way to connect with potential clients based on their specific needs and target audience.",
+    detailedDescription: "Sales Agent is an AI-Powered Integration tool that introduces a cutting-edge solution for business owners to discover potential leads with ease. By specifying their business type and target audience through a simple chat with a sales agent, users receive a curated list of relevant leads in an organized format. This streamlined process enhances customer outreach and supports business growth.",
+    tools: ["Java", "Spring Boot", "PostgreSQL", "MistralAI API"],
     liveLink: "https://github.com/telexintegrations/sales-agent",
     codeLink: "https://github.com/telexintegrations/sales-agent",
+    category: "Integration",
+    status: "completed",
+    featured: false,
+    stats: { stars: 10, forks: 3, contributors: 3 },
+    challenges: ["AI model integration", "Data privacy compliance", "Scalability"],
+    achievements: ["Automated lead generation", "High accuracy in lead matching", "User-friendly interface"]
   },
   {
     title: "Airbyte Integration (Zulip open source)",
-    description:
-      "Airbyte Integration for Zulip is a custom integration that allows users to connect Zulip with Airbyte, enabling seamless data synchronization between the two platforms. It provides a user-friendly interface for managing data flows and supports various data sources.",
+    description: "Airbyte Integration for Zulip is a custom integration that allows users to connect Zulip with Airbyte, enabling seamless data synchronization between the two platforms. It provides a user-friendly interface for managing data flows and supports various data sources.",
+    detailedDescription: "Airbyte Integration for Zulip is a custom integration that allows users to connect Zulip with Airbyte, enabling seamless data synchronization between the two platforms. It provides a user-friendly interface for managing data flows and supports various data sources.",
     tools: ["Python", "Airbyte API", "Zulip API", "Django"],
     issueLink: "https://github.com/zulip/zulip/issues/31746",
     codeLink: "https://github.com/zulip/zulip/pull/31922",
+    category: "Integration",
+    status: "completed",
+    featured: false,
+    stats: { stars: 5, forks: 2, contributors: 1 },
+    challenges: ["API rate limits", "Data consistency", "Error handling"],
+    achievements: ["Seamless data synchronization", "User-friendly interface", "Supports multiple data sources"]
   },
   {
     title: "Replace some uses of window.global() with upcast (servo open source)",
-    description: "All Window objects are also GlobalScope objects, and we should obtain that global scope with window.upcast::<GlobalScope>(). This is a simple transmute operation and is more efficient than window.global(), which requires calling several C++ functions in the JS engine. This project involves replacing instances of window.global() with upcast in the Servo browser engine, improving code quality and maintainability.",
+    description: "This project involves replacing instances of window.global() with upcast in the Servo browser engine, improving code quality and maintainability. The change is straightforward and enhances performance by reducing unnecessary function calls.",
+    detailedDescription: "All Window objects are also GlobalScope objects, and we should obtain that global scope with window.upcast::<GlobalScope>(). This is a simple transmute operation and is more efficient than window.global(), which requires calling several C++ functions in the JS engine. This project involves replacing instances of window.global() with upcast in the Servo browser engine, improving code quality and maintainability.",
     tools: ["Rust", "Servo", "WebAssembly", "JavaScript"],
     issueLink: "https://github.com/servo/servo/issues/36117",
-    codeLink: "https://github.com/servo/servo/pull/36179"
+    codeLink: "https://github.com/servo/servo/pull/36179",
+    category: "Open Source",
+    status: "completed",
+    featured: false,
+    stats: { stars: 15, forks: 4, contributors: 1 },
+    challenges: ["Understanding the Servo codebase", "Ensuring compatibility with existing features", "Testing across different platforms"],
   },
-
+  {
+    title: "Brints Portfolio (Frontend)",
+    description: "A personal portfolio website showcasing my projects, skills, and experiences. It features a modern design and responsive layout, built with Vue.js and Tailwind CSS.",
+    detailedDescription: "A personal portfolio website showcasing my projects, skills, and experiences. It features a modern design and responsive layout, built with Vue.js and Tailwind CSS. The site includes sections for my work, blog, and contact information, providing a comprehensive overview of my professional journey.",
+    tools: ["Vue.js", "Tailwind CSS", "TypeScript", "Vite", "Framer Motion"],
+    liveLink: "https://brints.xyz",
+    codeLink: "",
+    category: "Frontend",
+    status: "in-progress",
+    featured: false,
+    stats: { stars: 20, forks: 5, contributors: 1 },
+    challenges: ["Responsive design", "Performance optimization", "SEO best practices"],
+    achievements: ["Fully responsive design", "Fast loading times", "Accessible to all users"]
+  },
+  {
+    title: "UnravelDocs (Frontend)",
+    description: "The frontend for UnravelDocs, a document management system that allows users to upload hardcopy documents and convert them into digital format. It provides a user-friendly interface and is built using React and Tailwind CSS.",
+    detailedDescription: "The frontend for UnravelDocs, a document management system that allows users to upload hardcopy documents and convert them into digital format. It provides a user-friendly interface and is built using React and Tailwind CSS.",
+    tools: [
+      "Angular",
+      "Tailwind CSS",
+      "TypeScript",
+      "Vite",
+      "Framer Motion",
+      "Axios",
+      "RxJS",
+      "NgRx",
+      "NgRx Effects",
+      "NgRx Store",
+    ],
+    liveLink: "https://unraveldocs.xyz",
+    codeLink: "",
+    category: "Frontend",
+    status: "in-progress",
+    featured: true,
+    stats: { stars: 30, forks: 10, contributors: 1 },
+    challenges: ["Complex UI components", "State management", "API integration"],
+    achievements: ["Intuitive user interface", "High performance", "Seamless integration with backend"]
+  }
 ];
 
+export const projectCategories = ['All', 'Frontend', 'Backend', 'Full Stack', 'Mobile'];
+export const projectStatuses = ['All', 'completed', 'in-progress', 'planning'];

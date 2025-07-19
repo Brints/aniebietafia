@@ -1,52 +1,61 @@
 <script setup lang="ts">
 import CertificationsCard from "../components/UI/CertificationsCard.vue";
 import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
+import { certifications } from "../data/certifications";
 </script>
 
 <!-- Certifications section -->
 <template>
   <section class="p-6 md:p-12 bg-gray-900 text-gray-300">
     <!-- Title -->
-    <BracketLikeCurve title="Certifications" />
+    <BracketLikeCurve title="Certifications" variant="secondary"/>
 
     <!-- Description -->
     <p
-      class="font-lora opacity-90 transform transition duration-700 ease-in-out translate-y-2 hover:opacity-100 text-base leading-relaxed mb-8"
+      class="font-lora opacity-90 transform transition duration-700 ease-in-out translate-y-2 hover:opacity-100 text-base leading-relaxed mb-8 max-w-4xl mx-auto"
     >
-      I have completed several certifications that demonstrate my expertise in various technologies and methodologies.
-      These certifications include AWS Certified Solutions Architect, AWS Certified Developer, and AWS Certified DevOps
-      Engineer. I am always eager to learn new technologies and improve my skills.
+      I continuously invest in professional development through industry-recognized certifications.
+      These credentials validate my expertise in cloud technologies, software engineering practices,
+      and emerging technologies, ensuring I stay current with industry standards and best practices.
     </p>
 
+    <!-- Certifications Statistics -->
+    <div class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+      <div class="bg-gray-800 rounded-lg p-4">
+        <div class="text-2xl font-bold text-indigo-400">{{ certifications.length }}+</div>
+        <div class="text-sm text-gray-400">Certifications Earned</div>
+      </div>
+      <div class="bg-gray-800 rounded-lg p-4">
+        <div class="text-2xl font-bold text-indigo-400">{{ new Set(certifications.map(c => c.issuer)).size }}+</div>
+        <div class="text-sm text-gray-400">Certification Providers</div>
+      </div>
+      <div class="bg-gray-800 rounded-lg p-4">
+        <div class="text-2xl font-bold text-indigo-400">{{ new Set(certifications.flatMap(c => c.skills)).size }}+</div>
+        <div class="text-sm text-gray-400">Skills Validated</div>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <p class="font-lora text-gray-400 mb-4">
+        Interested in verifying my credentials? All certifications can be independently verified through their respective providers.
+      </p>
+    </div>
+
     <!-- Certifications List -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       <CertificationsCard
-        title="ALX Software Engineering Certification"
-        description="This certification validates the ability to design, build and deploy scalable systems."
-        link="https://res.cloudinary.com/aniebietafia/image/upload/v1752795445/certifications/Software_Engineering_Certificate_aj3pra.png"
-        image="Software_Engineering_Certificate_aj3pra.png"
-        alt="ALX Software Engineering"
-      />
-      <CertificationsCard
-        title="AWS Certified Developer - Associate"
-        description="This certification validates the ability to develop and maintain applications on AWS."
-        link="https://res.cloudinary.com/aniebietafia/image/upload/v1752796091/certifications/UC-Angular.jpg"
-        image="UC-Angular.jpg"
-        alt="AWS Certified Developer - Associate"
-      />
-      <CertificationsCard
-        title="AWS Certified DevOps Engineer - Professional"
-        description="This certification validates the ability to automate the testing and deployment of AWS infrastructure."
-        link="https://www.credly.com/badges/0c5f7a9b-fd4e-4b8c-bd1f-e0a5e7f3a0b5/public_url"
-        image="aws-devops-engineer-professional.png"
-        alt="AWS Certified DevOps Engineer - Professional"
-      />
-      <CertificationsCard
-        title="AWS Certified Cloud Practitioner"
-        description="This certification validates the ability to demonstrate knowledge of AWS Cloud and its services."
-        link="https://www.credly.com/badges/0c5f7a9b-fd4e-4b8c-bd1f-e0a5e7f3a0b5/public_url"
-        image="aws-cloud-practitioner.png"
-        alt="AWS Certified Cloud Practitioner"
+        v-for="certification in certifications"
+        :key="certification.id"
+        :title="certification.title"
+        :description="certification.description"
+        :link="certification.link"
+        :image="certification.image"
+        :alt="certification.alt"
+        :issuer="certification.issuer"
+        :date-earned="certification.dateEarned"
+        :expiration-date="certification.expirationDate"
+        :credential-id="certification.credentialId"
+        :skills="certification.skills"
       />
     </div>
   </section>

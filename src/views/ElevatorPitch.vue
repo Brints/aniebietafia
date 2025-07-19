@@ -7,7 +7,7 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
   <section
     class="elevator-pitch p-6 md:p-12 bg-gray-900 text-gray-300"
   >
-    <BracketLikeCurve title="Elevator Pitch" />
+    <BracketLikeCurve title="Elevator Pitch" variant="secondary"/>
 
     <!-- Left Section (Placeholder) -->
     <div class="flex flex-col md:flex-row items-center justify-between">
@@ -16,7 +16,7 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
         class="h-80 w-full bg-gray-800 rounded-lg flex items-center justify-center shadow-lg p-4"
       >
         <svg
-          class="w-full h-full text-gray-700"
+          class="w-full h-full text-gray-700 hidden md:block"
           fill="currentColor"
           viewBox="0 0 200 200"
           xmlns="http://www.w3.org/2000/svg"

@@ -5,18 +5,127 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 </script>
 
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 md:p-12 bg-gray-900 text-gray-300">
-    <!-- Image Section -->
-    <div class="hidden md:flex justify-center items-center">
-      <div
-          class="w-full max-w-xl md:max-w-2xl lg:max-w-3xl overflow-hidden rounded-xl shadow-2xl transition-all duration-500"
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <!-- Image -->
+    <div class="w-full">
+      <svg
+        class="w-full h-auto object-cover transform scale-95 hover:scale-100 transition-transform duration-700 ease-in-out rounded-xl"
+        viewBox="0 0 800 600"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <img
-            src="../assets/images/about-me.png"
-            alt="About Me"
-            class="w-full h-auto object-cover transform scale-95 hover:scale-100 transition-transform duration-700 ease-in-out rounded-xl"
-        />
-      </div>
+        <g opacity="0.3">
+          <rect width="800" height="600" fill="#111827" />
+          <g filter="url(#filter0_f_1_2)">
+            <circle cx="400" cy="300" r="100" fill="#6366F1" />
+          </g>
+          <g filter="url(#filter1_f_1_2)">
+            <circle cx="200" cy="400" r="50" fill="#818CF8" />
+          </g>
+          <g filter="url(#filter2_f_1_2)">
+            <circle cx="600" cy="200" r="75" fill="#A5B4FC" />
+          </g>
+        </g>
+        <g class="text-gray-600" stroke="currentColor" stroke-width="2">
+          <path d="M0 200 L800 200" />
+          <path d="M0 400 L800 400" />
+          <path d="M200 0 L200 600" />
+          <path d="M400 0 L400 600" />
+          <path d="M600 0 L600 600" />
+        </g>
+        <text
+          x="50%"
+          y="50%"
+          dominant-baseline="middle"
+          text-anchor="middle"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-dasharray="500"
+          class="text-6xl font-bold text-gray-500"
+        >
+          ABOUT ME
+          <animate
+            attributeName="stroke-dashoffset"
+            values="500;0;0;500;500"
+            keyTimes="0;0.5;0.7;0.9;1"
+            dur="6s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="fill"
+            values="none;none;currentColor;currentColor;none"
+            keyTimes="0;0.5;0.7;0.9;1"
+            dur="6s"
+            repeatCount="indefinite"
+          />
+        </text>
+        <defs>
+          <filter
+            id="filter0_f_1_2"
+            x="200"
+            y="100"
+            width="400"
+            height="400"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape"
+            />
+            <feGaussianBlur
+              stdDeviation="50"
+              result="effect1_foregroundBlur_1_2"
+            />
+          </filter>
+          <filter
+            id="filter1_f_1_2"
+            x="50"
+            y="250"
+            width="300"
+            height="300"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape"
+            />
+            <feGaussianBlur
+              stdDeviation="50"
+              result="effect1_foregroundBlur_1_2"
+            />
+          </filter>
+          <filter
+            id="filter2_f_1_2"
+            x="425"
+            y="25"
+            width="350"
+            height="350"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape"
+            />
+            <feGaussianBlur
+              stdDeviation="50"
+              result="effect1_foregroundBlur_1_2"
+            />
+          </filter>
+        </defs>
+      </svg>
     </div>
 
     <!-- Text Content -->

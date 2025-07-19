@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { computed } from "vue";
+import TwitterIcon from "../icons/TwitterIcon.vue";
+import LinkedInIcon from "../icons/LinkedInIcon.vue";
+import GitHubIcon from "../icons/GitHubIcon.vue";
 
 const currentYear = computed(() => new Date().getFullYear());
 
-const socialLinks = ref([
-  { name: "Twitter", url: "https://twitter.com/teibeina001" },
-  { name: "LinkedIn", url: "https://linkedin.com/in/aniebietafia" },
-  { name: "GitHub", url: "https://github.com/aniebietafia" },
-]);
+const socialLinks = [
+  { name: "Twitter", url: "https://twitter.com/teibeina001", icon: TwitterIcon },
+  { name: "LinkedIn", url: "https://linkedin.com/in/aniebietafia", icon: LinkedInIcon },
+  { name: "GitHub", url: "https://github.com/aniebietafia", icon: GitHubIcon },
+];
 </script>
 
 <template>
@@ -24,10 +27,12 @@ const socialLinks = ref([
             v-for="link in socialLinks"
             :key="link.name"
             :href="link.url"
+            :aria-label="`Link to my ${link.name} profile`"
             target="_blank"
+            rel="noopener noreferrer"
             class="text-gray-400 hover:text-white transition-colors duration-300"
         >
-          {{ link.name }}
+          <component :is="link.icon" class="w-6 h-6" />
         </a>
       </div>
     </div>

@@ -1,14 +1,91 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-16 h-16">
-    <path d="M50,5 L95,25 L95,75 L50,95 L5,75 L5,25 Z" fill="#4A90E2" />
+  <defs>
+    <!-- Gradient definitions -->
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EF4444;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E5E7EB;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Shadow filter -->
+    <filter id="dropshadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background circle with gradient -->
+  <circle cx="50" cy="50" r="48" fill="url(#primaryGradient)" filter="url(#dropshadow)" opacity="0.95"/>
+
+  <!-- Inner tech pattern -->
+  <g opacity="0.2" stroke="#FFFFFF" stroke-width="0.5" fill="none">
+    <!-- Circuit-like lines -->
+    <path d="M20,30 L35,30 L35,20 L50,20 L50,30 L65,30 L65,40 L80,40"/>
+    <path d="M20,50 L30,50 L30,60 L40,60 L40,70 L60,70 L60,60 L70,60 L70,50 L80,50"/>
+    <path d="M20,70 L35,70 L35,80 L50,80 L50,70 L65,70 L65,60 L80,60"/>
+
+    <!-- Tech dots -->
+    <circle cx="35" cy="30" r="1.5" fill="#FFFFFF"/>
+    <circle cx="50" cy="20" r="1.5" fill="#FFFFFF"/>
+    <circle cx="65" cy="40" r="1.5" fill="#FFFFFF"/>
+    <circle cx="30" cy="60" r="1.5" fill="#FFFFFF"/>
+    <circle cx="60" cy="70" r="1.5" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Code brackets -->
+  <g fill="url(#accentGradient)" filter="url(#glow)">
+    <!-- Left bracket -->
+    <path d="M32,35 Q28,40 28,50 Q28,60 32,65" stroke="url(#accentGradient)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Right bracket -->
+    <path d="M68,35 Q72,40 72,50 Q72,60 68,65" stroke="url(#accentGradient)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Main letter A with enhanced styling -->
+  <g filter="url(#dropshadow)">
     <text
       x="50%"
-      y="50%"
+      y="55%"
       text-anchor="middle"
       dominant-baseline="middle"
-      font-size="40"
-      fill="#FFFFFF"
-      font-family="'Arial', sans-serif"
+      font-size="32"
+      font-weight="bold"
+      fill="url(#textGradient)"
+      font-family="'Segoe UI', 'Roboto', sans-serif"
+      letter-spacing="1px"
     >
       A
     </text>
-  </svg>
+  </g>
+
+  <!-- Subtle accent line under the A -->
+  <line x1="42" y1="62" x2="58" y2="62" stroke="url(#accentGradient)" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Small tech indicator dots -->
+  <g fill="url(#accentGradient)" opacity="0.7">
+    <circle cx="25" cy="25" r="1" />
+    <circle cx="75" cy="25" r="1" />
+    <circle cx="25" cy="75" r="1" />
+    <circle cx="75" cy="75" r="1" />
+  </g>
+
+  <!-- Animated pulse ring (will be subtle in favicon) -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.3">
+    <animate attributeName="r" values="45;47;45" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>

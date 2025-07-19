@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { Project } from "../../data/projects";
+import type { Project } from "../../interfaces/project.ts";
 
 const props = defineProps<{
   project: Project;

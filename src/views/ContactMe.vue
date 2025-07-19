@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import emailjs from "@emailjs/browser";
 import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 import FormField from "../components/UI/FormField.vue";
 
@@ -13,18 +14,35 @@ const handleSubmit = async () => {
   formStatus.value = "submitting";
   formMessage.value = "";
 
-  // Simulate API call
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  if (!fullName.value || !email.value || !message.value) {
+    formStatus.value = "error";
+    formMessage.value = "Please fill out all fields before submitting.";
+    return;
+  }
 
-  if (fullName.value && email.value && message.value) {
+  try {
+    // TODO: Replace with your EmailJS Service ID, Template ID, and Public Key
+    const serviceID = "service_5ebutin";
+    const templateID = "template_cxnzwif";
+    const publicKey = "hLCIOa6lJcn3wtPj9";
+
+    const templateParams = {
+      from_name: fullName.value,
+      from_email: email.value,
+      message: message.value,
+    };
+
+    await emailjs.send(serviceID, templateID, templateParams, publicKey);
+
     formStatus.value = "success";
     formMessage.value = "Your message has been sent successfully! Thank you for reaching out.";
     fullName.value = "";
     email.value = "";
     message.value = "";
-  } else {
+  } catch (error) {
     formStatus.value = "error";
-    formMessage.value = "Please fill out all fields before submitting.";
+    formMessage.value = "Sorry, there was an error sending your message. Please try again later.";
+    console.error("EmailJS error:", error);
   }
 };
 </script>

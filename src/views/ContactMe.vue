@@ -63,65 +63,156 @@ const handleSubmit = async () => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g clip-path="url(#clip0_1_2)">
+          <!-- Left Hand -->
+          <g id="leftHand" transform="translate(150, 250)">
             <path
-              d="M-10 610L610 -10"
-              stroke="url(#paint0_linear_1_2)"
-              stroke-width="40"
-            />
-            <path
-              d="M190 810L810 190"
-              stroke="url(#paint1_linear_1_2)"
-              stroke-width="40"
-            />
-            <path
-              d="M490 910L910 490"
-              stroke="url(#paint2_linear_1_2)"
-              stroke-width="40"
-            />
+              d="M0 80 Q20 60, 40 80 L40 120 Q40 140, 20 140 L0 140 Z"
+              fill="url(#handGradient1)"
+              stroke="#818CF8"
+              stroke-width="2"
+            >
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; 20,0; 0,0"
+                dur="3s"
+                repeatCount="indefinite"
+              />
+            </path>
+            <!-- Fingers -->
+            <rect x="40" y="70" width="8" height="25" rx="4" fill="url(#handGradient1)">
+              <animate attributeName="height" values="25;30;25" dur="2s" repeatCount="indefinite" />
+            </rect>
+            <rect x="50" y="65" width="8" height="30" rx="4" fill="url(#handGradient1)">
+              <animate attributeName="height" values="30;35;30" dur="2.2s" repeatCount="indefinite" />
+            </rect>
+            <rect x="60" y="70" width="8" height="25" rx="4" fill="url(#handGradient1)">
+              <animate attributeName="height" values="25;30;25" dur="2.4s" repeatCount="indefinite" />
+            </rect>
+            <rect x="70" y="75" width="8" height="20" rx="4" fill="url(#handGradient1)">
+              <animate attributeName="height" values="20;25;20" dur="2.6s" repeatCount="indefinite" />
+            </rect>
           </g>
+
+          <!-- Right Hand -->
+          <g id="rightHand" transform="translate(550, 250)">
+            <path
+              d="M80 80 Q60 60, 40 80 L40 120 Q40 140, 60 140 L80 140 Z"
+              fill="url(#handGradient2)"
+              stroke="#60A5FA"
+              stroke-width="2"
+            >
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="0,0; -20,0; 0,0"
+                dur="3s"
+                repeatCount="indefinite"
+              />
+            </path>
+            <!-- Fingers -->
+            <rect x="32" y="70" width="8" height="25" rx="4" fill="url(#handGradient2)">
+              <animate attributeName="height" values="25;30;25" dur="2.8s" repeatCount="indefinite" />
+            </rect>
+            <rect x="22" y="65" width="8" height="30" rx="4" fill="url(#handGradient2)">
+              <animate attributeName="height" values="30;35;30" dur="3s" repeatCount="indefinite" />
+            </rect>
+            <rect x="12" y="70" width="8" height="25" rx="4" fill="url(#handGradient2)">
+              <animate attributeName="height" values="25;30;25" dur="3.2s" repeatCount="indefinite" />
+            </rect>
+            <rect x="2" y="75" width="8" height="20" rx="4" fill="url(#handGradient2)">
+              <animate attributeName="height" values="20;25;20" dur="3.4s" repeatCount="indefinite" />
+            </rect>
+          </g>
+
+          <!-- Connection Lines (representing the handshake) -->
+          <path
+            d="M270 320 Q400 280, 530 320"
+            stroke="url(#connectionGradient)"
+            stroke-width="6"
+            fill="none"
+            stroke-dasharray="20 10"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              values="0;-30;0"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="stroke-width"
+              values="6;8;6"
+              dur="1.5s"
+              repeatCount="indefinite"
+            />
+          </path>
+
+          <path
+            d="M280 340 Q400 300, 520 340"
+            stroke="url(#connectionGradient)"
+            stroke-width="4"
+            fill="none"
+            stroke-dasharray="15 8"
+            opacity="0.7"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              values="0;-23;0"
+              dur="2.5s"
+              repeatCount="indefinite"
+            />
+          </path>
+
+          <!-- Floating connection particles -->
+          <circle cx="350" cy="300" r="3" fill="#F472B6" opacity="0.8">
+            <animate attributeName="cy" values="300;280;300" dur="2s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" />
+          </circle>
+
+          <circle cx="400" cy="290" r="2" fill="#818CF8" opacity="0.6">
+            <animate attributeName="cy" values="290;270;290" dur="2.2s" repeatCount="indefinite" />
+            <animate attributeName="cx" values="400;410;400" dur="3s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="2.2s" repeatCount="indefinite" />
+          </circle>
+
+          <circle cx="450" cy="305" r="2.5" fill="#60A5FA" opacity="0.7">
+            <animate attributeName="cy" values="305;285;305" dur="2.4s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.7;1;0.7" dur="2.4s" repeatCount="indefinite" />
+          </circle>
+
+          <!-- Background decorative elements -->
+          <circle cx="200" cy="150" r="40" fill="none" stroke="#818CF8" stroke-width="2" opacity="0.3">
+            <animate attributeName="r" values="40;50;40" dur="4s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite" />
+          </circle>
+
+          <circle cx="600" cy="450" r="35" fill="none" stroke="#60A5FA" stroke-width="2" opacity="0.4">
+            <animate attributeName="r" values="35;45;35" dur="3.5s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.4;0.7;0.4" dur="3.5s" repeatCount="indefinite" />
+          </circle>
+
           <defs>
-            <linearGradient
-              id="paint0_linear_1_2"
-              x1="290"
-              y1="290"
-              x2="320"
-              y2="320"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#818CF8" />
-              <stop offset="1" stop-color="#C4B5FD" />
+            <linearGradient id="handGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#818CF8" />
+              <stop offset="100%" stop-color="#C4B5FD" />
             </linearGradient>
-            <linearGradient
-              id="paint1_linear_1_2"
-              x1="490"
-              y1="490"
-              x2="520"
-              y2="520"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#60A5FA" />
-              <stop offset="1" stop-color="#3B82F6" />
+
+            <linearGradient id="handGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#60A5FA" />
+              <stop offset="100%" stop-color="#3B82F6" />
             </linearGradient>
-            <linearGradient
-              id="paint2_linear_1_2"
-              x1="690"
-              y1="690"
-              x2="720"
-              y2="720"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#F472B6" />
-              <stop offset="1" stop-color="#EC4899" />
+
+            <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#818CF8" />
+              <stop offset="50%" stop-color="#F472B6" />
+              <stop offset="100%" stop-color="#60A5FA" />
             </linearGradient>
-            <clipPath id="clip0_1_2">
-              <rect width="800" height="600" fill="white" />
-            </clipPath>
           </defs>
         </svg>
         <div class="relative z-10 flex flex-col items-center justify-center w-full h-full">
-          <p class="text-gray-300 text-center text-lg md:text-xl font-semibold drop-shadow-lg">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+          <p class="text-gray-300 text-center text-lg md:text-xl font-semibold drop-shadow-lg animate-fade-in-up">
+            <span class="inline-block animate-bounce-slow">Contact</span>
+            <span class="inline-block animate-pulse-slow delay-200">Me</span>
           </p>
         </div>
       </section>
@@ -205,5 +296,51 @@ const handleSubmit = async () => {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s infinite;
 }
 </style>

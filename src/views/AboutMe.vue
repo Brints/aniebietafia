@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import ContactMe from "../components/buttons/ContactMe.vue";
 import ViewResume from "../components/buttons/ViewResume.vue";
+import DownloadResume from "../components/buttons/DownloadResume.vue";
 import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 </script>
 
 <template>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
     <!-- Image -->
-    <div class="w-full">
+    <div class="w-full hidden md:block">
       <svg
-        class="w-full h-auto object-cover transform scale-95 hover:scale-100 transition-transform duration-700 ease-in-out rounded-xl"
-        viewBox="0 0 800 600"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+          class="w-full h-auto object-cover transform scale-95 hover:scale-100 transition-transform duration-700 ease-in-out rounded-xl"
+          viewBox="0 0 800 600"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
       >
         <g opacity="0.3">
           <rect width="800" height="600" fill="#111827" />
@@ -27,101 +28,138 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
           </g>
         </g>
         <g class="text-gray-600" stroke="currentColor" stroke-width="2">
-          <path d="M0 200 L800 200" />
-          <path d="M0 400 L800 400" />
-          <path d="M200 0 L200 600" />
-          <path d="M400 0 L400 600" />
-          <path d="M600 0 L600 600" />
+          <!-- Grid Lines Animation -->
+          <path stroke-dasharray="800" stroke-dashoffset="800" d="M0 200 L800 200">
+            <animate attributeName="stroke-dashoffset" values="800;0;0;800" dur="7s" begin="0s" repeatCount="indefinite" />
+          </path>
+          <path stroke-dasharray="800" stroke-dashoffset="800" d="M0 400 L800 400">
+            <animate attributeName="stroke-dashoffset" values="800;0;0;800" dur="7s" begin="0.2s" repeatCount="indefinite" />
+          </path>
+          <path stroke-dasharray="600" stroke-dashoffset="600" d="M200 0 L200 600">
+            <animate attributeName="stroke-dashoffset" values="600;0;0;600" dur="7s" begin="0.4s" repeatCount="indefinite" />
+          </path>
+          <path stroke-dasharray="600" stroke-dashoffset="600" d="M400 0 L400 600">
+            <animate attributeName="stroke-dashoffset" values="600;0;0;600" dur="7s" begin="0.6s" repeatCount="indefinite" />
+          </path>
+          <path stroke-dasharray="600" stroke-dashoffset="600" d="M600 0 L600 600">
+            <animate attributeName="stroke-dashoffset" values="600;0;0;600" dur="7s" begin="0.8s" repeatCount="indefinite" />
+          </path>
         </g>
         <text
-          x="50%"
-          y="50%"
-          dominant-baseline="middle"
-          text-anchor="middle"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1"
-          stroke-dasharray="500"
-          class="text-6xl font-bold text-gray-500"
+            x="50%"
+            y="50%"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-dasharray="500"
+            stroke-dashoffset="500"
+            class="text-6xl font-bold text-gray-500"
         >
           ABOUT ME
+          <!-- Text Drawing Animation - Draw in -->
           <animate
-            attributeName="stroke-dashoffset"
-            values="500;0;0;500;500"
-            keyTimes="0;0.5;0.7;0.9;1"
-            dur="6s"
-            repeatCount="indefinite"
+              attributeName="stroke-dashoffset"
+              values="500;0"
+              dur="2s"
+              begin="1s"
+              repeatCount="indefinite"
           />
+          <!-- Text Drawing Animation - Erase -->
           <animate
-            attributeName="fill"
-            values="none;none;currentColor;currentColor;none"
-            keyTimes="0;0.5;0.7;0.9;1"
-            dur="6s"
-            repeatCount="indefinite"
+              attributeName="stroke-dashoffset"
+              values="0;500"
+              dur="1s"
+              begin="5s"
+              repeatCount="indefinite"
+          />
+          <!-- Text Fill Animation - Fill in -->
+          <animate
+              attributeName="fill"
+              values="none;currentColor"
+              dur="1s"
+              begin="2.5s"
+              repeatCount="indefinite"
+          />
+          <!-- Text Fill Animation - Remove fill -->
+          <animate
+              attributeName="fill"
+              values="currentColor;none"
+              dur="1s"
+              begin="5s"
+              repeatCount="indefinite"
+          />
+          <!-- Main animation loop trigger -->
+          <animate
+              attributeName="opacity"
+              values="1"
+              dur="6.8s"
+              repeatCount="indefinite"
           />
         </text>
         <defs>
           <filter
-            id="filter0_f_1_2"
-            x="200"
-            y="100"
-            width="400"
-            height="400"
-            filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+              id="filter0_f_1_2"
+              x="200"
+              y="100"
+              width="400"
+              height="400"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
           >
             <feFlood flood-opacity="0" result="BackgroundImageFix" />
             <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
             />
             <feGaussianBlur
-              stdDeviation="50"
-              result="effect1_foregroundBlur_1_2"
+                stdDeviation="50"
+                result="effect1_foregroundBlur_1_2"
             />
           </filter>
           <filter
-            id="filter1_f_1_2"
-            x="50"
-            y="250"
-            width="300"
-            height="300"
-            filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+              id="filter1_f_1_2"
+              x="50"
+              y="250"
+              width="300"
+              height="300"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
           >
             <feFlood flood-opacity="0" result="BackgroundImageFix" />
             <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
             />
             <feGaussianBlur
-              stdDeviation="50"
-              result="effect1_foregroundBlur_1_2"
+                stdDeviation="50"
+                result="effect1_foregroundBlur_1_2"
             />
           </filter>
           <filter
-            id="filter2_f_1_2"
-            x="425"
-            y="25"
-            width="350"
-            height="350"
-            filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+              id="filter2_f_1_2"
+              x="425"
+              y="25"
+              width="350"
+              height="350"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
           >
             <feFlood flood-opacity="0" result="BackgroundImageFix" />
             <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
             />
             <feGaussianBlur
-              stdDeviation="50"
-              result="effect1_foregroundBlur_1_2"
+                stdDeviation="50"
+                result="effect1_foregroundBlur_1_2"
             />
           </filter>
         </defs>
@@ -176,8 +214,9 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
         <p class="text-indigo-400 font-semibold text-lg animate-pulse">Let's build something great together!</p>
       </div>
 
-      <div class="mt-8 flex flex-wrap gap-4">
+      <div class="mt-8 pb-3 flex flex-wrap justify-center gap-4">
         <ViewResume />
+        <DownloadResume />
         <ContactMe />
       </div>
     </div>

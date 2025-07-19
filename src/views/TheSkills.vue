@@ -1,7 +1,147 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue';
 import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
-import SkillBadge from "../components/unnamed/SkillBadge.vue";
 import BaseCard from "../components/UI/BaseCard.vue";
+
+// Skill proficiency levels
+const skillLevels = {
+  EXPERT: 5,
+  ADVANCED: 4,
+  INTERMEDIATE: 3,
+  BEGINNER: 2,
+  LEARNING: 1
+};
+
+// Enhanced skill data with proficiency and experience
+const skillsData = {
+  backend: {
+    title: "Backend Languages",
+    icon: "🚀",
+    skills: [
+      { name: "Java", level: skillLevels.EXPERT, years: 3, shield: "https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white", link: "https://www.java.com/" },
+      { name: "Python", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white", link: "https://www.python.org/" },
+      { name: "Node.js", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white", link: "https://nodejs.org/" },
+      { name: "Go", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white", link: "https://golang.org/" },
+      { name: "Rust", level: skillLevels.LEARNING, years: 0.5, shield: "https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white", link: "https://www.rust-lang.org/" },
+      { name: "C", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white", link: "https://en.wikipedia.org/wiki/C_(programming_language)" }
+    ]
+  },
+  frameworks: {
+    title: "Backend Frameworks",
+    icon: "⚡",
+    skills: [
+      { name: "Spring Boot", level: skillLevels.EXPERT, years: 3, shield: "https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white", link: "https://spring.io/projects/spring-boot" },
+      { name: "Express", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white", link: "https://expressjs.com/" },
+      { name: "FastAPI", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white", link: "https://fastapi.tiangolo.com/" },
+      { name: "Django", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white", link: "https://www.djangoproject.com/" },
+      { name: "NestJS", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white", link: "https://nestjs.com/" }
+    ]
+  },
+  databases: {
+    title: "Databases",
+    icon: "🗄️",
+    skills: [
+      { name: "MongoDB", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white", link: "https://www.mongodb.com/" },
+      { name: "PostgreSQL", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white", link: "https://www.postgresql.org/" }
+    ]
+  },
+  cloud: {
+    title: "Cloud & DevOps",
+    icon: "☁️",
+    skills: [
+      { name: "AWS", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white", link: "https://aws.amazon.com/" },
+      { name: "DigitalOcean", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white", link: "https://www.digitalocean.com/" },
+      { name: "Heroku", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white", link: "https://www.heroku.com/" }
+    ]
+  },
+  frontend: {
+    title: "Frontend & Build Tools",
+    icon: "🎨",
+    skills: [
+      { name: "Vue.js", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white", link: "https://vuejs.org/" },
+      { name: "TypeScript", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white", link: "https://www.typescriptlang.org/" },
+      { name: "JavaScript", level: skillLevels.ADVANCED, years: 3, shield: "https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+      { name: "HTML", level: skillLevels.EXPERT, years: 4, shield: "https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white", link: "https://html.spec.whatwg.org/" },
+      { name: "CSS", level: skillLevels.ADVANCED, years: 3, shield: "https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white", link: "https://www.w3.org/Style/CSS/" },
+      { name: "Tailwind CSS", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white", link: "https://tailwindcss.com/" },
+      { name: "Vite", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white", link: "https://vitejs.dev/" },
+      { name: "Webpack", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=webpack&logoColor=black", link: "https://webpack.js.org/" }
+    ]
+  },
+  tools: {
+    title: "Tools & Others",
+    icon: "🛠️",
+    skills: [
+      { name: "Git", level: skillLevels.ADVANCED, years: 3, shield: "https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white", link: "https://git-scm.com/" },
+      { name: "Docker", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white", link: "https://www.docker.com/" },
+      { name: "NPM", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white", link: "https://www.npmjs.com/" },
+      { name: "Yarn", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white", link: "https://yarnpkg.com/" },
+      { name: "PNPM", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/PNPM-F69220?style=for-the-badge&logo=pnpm&logoColor=white", link: "https://pnpm.io/" },
+      { name: "Maven", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white", link: "https://maven.apache.org/" },
+      { name: "GraphQL", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white", link: "https://www.graphql.com/" },
+      { name: "REST API", level: skillLevels.ADVANCED, years: 3, shield: "https://img.shields.io/badge/REST-000000?style=for-the-badge&logo=rest&logoColor=white", link: "https://www.restapitutorial.com/" }
+    ]
+  }
+};
+
+// Filter state
+const selectedFilter = ref('all');
+const selectedLevel = ref('all');
+
+// Filter options
+const filterOptions = [
+  { value: 'all', label: 'All Skills' },
+  { value: 'backend', label: 'Backend' },
+  { value: 'frameworks', label: 'Frameworks' },
+  { value: 'databases', label: 'Databases' },
+  { value: 'cloud', label: 'Cloud & DevOps' },
+  { value: 'frontend', label: 'Frontend' },
+  { value: 'tools', label: 'Tools' }
+];
+
+const levelOptions = [
+  { value: 'all', label: 'All Levels' },
+  { value: '5', label: 'Expert' },
+  { value: '4', label: 'Advanced' },
+  { value: '3', label: 'Intermediate' },
+  { value: '2', label: 'Beginner' },
+  { value: '1', label: 'Learning' }
+];
+
+// Computed filtered skills
+const filteredSkills = computed(() => {
+  let filtered = { ...skillsData };
+
+  if (selectedFilter.value !== 'all') {
+    filtered = { [selectedFilter.value]: skillsData[selectedFilter.value] };
+  }
+
+  if (selectedLevel.value !== 'all') {
+    const levelValue = parseInt(selectedLevel.value);
+    Object.keys(filtered).forEach(category => {
+      filtered[category].skills = filtered[category].skills.filter(skill => skill.level === levelValue);
+    });
+  }
+
+  return filtered;
+});
+
+// Helper functions
+const getLevelText = (level) => {
+  const levels = { 5: 'Expert', 4: 'Advanced', 3: 'Intermediate', 2: 'Beginner', 1: 'Learning' };
+  return levels[level];
+};
+
+const getLevelColor = (level) => {
+  const colors = {
+    5: 'bg-emerald-500',
+    4: 'bg-blue-500',
+    3: 'bg-yellow-500',
+    2: 'bg-orange-500',
+    1: 'bg-red-500'
+  };
+  return colors[level];
+};
 </script>
 
 <template>
@@ -9,330 +149,233 @@ import BaseCard from "../components/UI/BaseCard.vue";
     <!-- Title -->
     <BracketLikeCurve title="Skills" />
 
-    <!-- Description -->
-    <p
-      class="font-lora opacity-90 transform transition duration-700 ease-in-out translate-y-2 hover:opacity-100 text-base leading-relaxed mb-8"
-    >
-      I am proficient in a variety of programming languages and frameworks. My expertise includes Java, Spring Boot,
-      Node.js, Express, Vue.js, Python, FastAPI, Django and Tailwind CSS. I have also worked with various databases such
-      as MongoDB and PostgresSQL. I am always eager to learn new technologies and improve my skills.
-    </p>
+    <!-- Enhanced Description -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <p class="font-lora text-lg leading-relaxed text-center opacity-90 hover:opacity-100 transition-opacity duration-300">
+        I am a <span class="text-indigo-400 font-semibold">passionate full-stack developer</span> with expertise across multiple technologies.
+        Below you'll find my technical skills with <span class="text-emerald-400 font-semibold">proficiency levels</span> and
+        <span class="text-blue-400 font-semibold">years of experience</span>. I'm always eager to learn and grow!
+      </p>
+    </div>
 
-    <!-- Skills List -->
-    <div class="font-lora grid gap-4 justify-center grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-      <BaseCard
-        customClass="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2"
-        customStyle="transform transition duration-700 ease-in-out"
+    <!-- Filter Controls -->
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <div class="flex flex-col">
+        <label class="text-sm text-gray-400 mb-2">Filter by Category</label>
+        <select
+          v-model="selectedFilter"
+          class="bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-gray-300 focus:border-indigo-500 focus:outline-none"
+        >
+          <option v-for="option in filterOptions" :key="option.value" :value="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+
+      <div class="flex flex-col">
+        <label class="text-sm text-gray-400 mb-2">Filter by Level</label>
+        <select
+          v-model="selectedLevel"
+          class="bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-gray-300 focus:border-indigo-500 focus:outline-none"
+        >
+          <option v-for="option in levelOptions" :key="option.value" :value="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid gap-6 md:gap-8 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+      <div
+        v-for="(category, key, index) in filteredSkills"
+        :key="key"
+        class="animate-fade-in-up"
+        :style="`animation-delay: ${index * 0.1}s`"
       >
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Backend Tools</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://www.java.com/"
-              alt="Java Badge"
-              shield="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"
-            />
-            <SkillBadge
-              link="https://en.wikipedia.org/wiki/C_(programming_language)"
-              alt="C Programming Badge"
-              shield="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white"
-            />
-            <SkillBadge
-              link="https://www.rust-lang.org/"
-              alt="Rust Badge"
-              shield="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white"
-            />
-            <SkillBadge
-              alt="Go Badge"
-              link="https://golang.org/"
-              shield="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white"
-            />
-            <SkillBadge
-              link="https://nodejs.org/"
-              alt="Node.js Badge"
-              shield="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white"
-            />
-            <SkillBadge
-              link="https://www.python.org/"
-              alt="Python Badge"
-              shield="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"
-            />
+        <BaseCard
+          customClass="h-full hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20"
+          customStyle="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border: 1px solid rgba(99, 102, 241, 0.2);"
+        >
+          <!-- Category Header -->
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">{{ category.icon }}</span>
+              <h3 class="text-xl font-bold text-white">{{ category.title }}</h3>
+            </div>
+            <div class="bg-indigo-500/20 px-3 py-1 rounded-full">
+              <span class="text-indigo-300 text-sm font-medium">{{ category.skills.length }} skills</span>
+            </div>
           </div>
-        </div>
 
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Backend Frameworks</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://expressjs.com/"
-              shield="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"
-              alt="Express Badge"
-            />
-            <SkillBadge
-              link="https://fastapi.tiangolo.com/"
-              shield="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"
-              alt="FastAPI Badge"
-            />
-            <SkillBadge
-              link="https://www.djangoproject.com/"
-              shield="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"
-              alt="Django Badge"
-            />
-            <SkillBadge
-              link="https://spring.io/projects/spring-boot"
-              shield="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white"
-              alt="Spring Boot Badge"
-            />
-            <SkillBadge
-              link="https://nestjs.com/"
-              shield="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white"
-              alt="NestJS Badge"
-            />
+          <!-- Skills List -->
+          <div class="space-y-4">
+            <div
+              v-for="(skill, skillIndex) in category.skills"
+              :key="skill.name"
+              class="group relative bg-gray-800/50 rounded-lg p-4 hover:bg-gray-700/50 transition-all duration-300 animate-slide-in-left"
+              :style="`animation-delay: ${(index * 0.1) + (skillIndex * 0.05)}s`"
+            >
+              <!-- Skill Header -->
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <a :href="skill.link" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform duration-200">
+                    <img :src="skill.shield" :alt="skill.name + ' Badge'" class="h-6" />
+                  </a>
+                  <div>
+                    <h4 class="font-medium text-white">{{ skill.name }}</h4>
+                    <p class="text-xs text-gray-400">{{ skill.years }}+ years experience</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-medium text-gray-300">{{ getLevelText(skill.level) }}</span>
+                </div>
+              </div>
+
+              <!-- Proficiency Bar -->
+              <div class="relative">
+                <div class="w-full bg-gray-700 rounded-full h-2">
+                  <div
+                    :class="getLevelColor(skill.level)"
+                    class="h-2 rounded-full transition-all duration-1000 ease-out"
+                    :style="`width: ${(skill.level / 5) * 100}%; animation-delay: ${(index * 0.2) + (skillIndex * 0.1)}s`"
+                  ></div>
+                </div>
+                <!-- Stars -->
+                <div class="flex gap-1 mt-2">
+                  <span
+                    v-for="star in 5"
+                    :key="star"
+                    class="text-lg transition-colors duration-200"
+                    :class="star <= skill.level ? 'text-yellow-400' : 'text-gray-600'"
+                  >
+                    ★
+                  </span>
+                </div>
+              </div>
+
+              <!-- Hover Info -->
+              <div class="absolute inset-0 bg-indigo-600/90 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div class="text-center text-white p-4">
+                  <h5 class="font-bold mb-2">{{ skill.name }}</h5>
+                  <p class="text-sm mb-2">{{ getLevelText(skill.level) }} Level</p>
+                  <p class="text-xs">{{ skill.years }}+ years of hands-on experience</p>
+                  <div class="mt-2">
+                    <a :href="skill.link" target="_blank" class="text-xs underline hover:text-indigo-200">
+                      Learn more →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </BaseCard>
+      </div>
+    </div>
 
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Database Tools</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://www.mongodb.com/"
-              shield="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white"
-              alt="MongoDB Badge"
-            />
-            <SkillBadge
-              link="https://www.postgresql.org/"
-              shield="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white"
-              alt="PostgreSQL Badge"
-            />
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Cloud Services</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://www.digitalocean.com/"
-              shield="https://img.shields.io/badge/DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white"
-              alt="DigitalOcean Badge"
-            />
-            <SkillBadge
-              link="https://www.heroku.com/"
-              shield="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"
-              alt="Heroku Badge"
-            />
-
-            <SkillBadge
-              link="https://aws.amazon.com/"
-              shield="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white"
-              alt="AWS Badge"
-            />
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">APIs</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://www.graphql.com/"
-              shield="https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white"
-              alt="GraphQL Badge"
-            />
-            <SkillBadge
-              link="https://www.restapitutorial.com/"
-              shield="https://img.shields.io/badge/REST-000000?style=for-the-badge&logo=rest&logoColor=white"
-              alt="REST Badge"
-            />
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Package Managers</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://www.npmjs.com/"
-              shield="https://img.shields.io/badge/NPM-CB3837?style=for-the-badge&logo=npm&logoColor=white"
-              alt="NPM Badge"
-            />
-            <SkillBadge
-              link="https://yarnpkg.com/"
-              shield="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white"
-              alt="Yarn Badge"
-            />
-            <SkillBadge
-              link="https://www.npmjs.com/"
-              shield="https://img.shields.io/badge/Pip-3776AB?style=for-the-badge&logo=pypi&logoColor=white"
-              alt="Pip Badge"
-            />
-            <SkillBadge
-              link="https://pnpm.io/"
-              shield="https://img.shields.io/badge/PNPM-F69220?style=for-the-badge&logo=pnpm&logoColor=white"
-              alt="PNPM Badge"
-            />
-            <SkillBadge
-                link="https://maven.apache.org/"
-                shield="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white"
-                alt="Maven Badge"
-            />
-          </div>
-        </div>
-      </BaseCard>
-
-      <BaseCard
-        customClass="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2"
-        customStyle="transform transition duration-700 ease-in-out"
-      >
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Frontend & Build Tools</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://webpack.js.org/"
-              shield="https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=webpack&logoColor=black"
-              alt="Webpack Badge"
-            />
-            <SkillBadge
-              link="https://vitejs.dev/"
-              shield="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white"
-              alt="Vite Badge"
-            />
-
-            <SkillBadge
-              link="https://html.spec.whatwg.org/"
-              shield="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white"
-              alt="HTML Badge"
-            />
-
-            <SkillBadge
-              link="https://www.w3.org/Style/CSS/"
-              shield="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white"
-              alt="CSS Badge"
-            />
-
-            <SkillBadge
-              link="https://www.typescriptlang.org/"
-              shield="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"
-              alt="TypeScript Badge"
-            />
-            <SkillBadge
-              link="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-              shield="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"
-              alt="JavaScript Badge"
-            />
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Frontend Frameworks</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://vuejs.org/"
-              shield="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D"
-              alt="Vue.js Badge"
-            />
-            <SkillBadge
-              link="https://angular.io/"
-              shield="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"
-              alt="Angular Badge"
-            />
-            <SkillBadge
-              link="https://tailwindcss.com/"
-              shield="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white"
-              alt="Tailwind CSS Badge"
-            />
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Testing Tools</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://jestjs.io/"
-              shield="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white"
-              alt="Jest Badge"
-            />
-            <SkillBadge
-              link="https://junit.org/"
-              shield="https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white"
-              alt="JUnit Badge"
-            />
-            <SkillBadge
-              link="https://github.com/visionmedia/supertest"
-              shield="https://img.shields.io/badge/Supertest-333333?style=for-the-badge&logo=supertest&logoColor=white"
-              alt="Supertest Badge"
-            />
-            <SkillBadge
-              link="https://site.mockito.org/"
-              shield="https://img.shields.io/badge/Mockito-4CAF50?style=for-the-badge&logo=mockito&logoColor=white"
-              alt="Mockito Badge"
-            />
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Version Control</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://git-scm.com/"
-              shield="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"
-              alt="Git Badge"
-            />
-            <SkillBadge
-              link="https://github.com/"
-              shield="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"
-              alt="GitHub Badge"
-            />
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Deployment Tools & Containerization</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://www.docker.com/"
-              shield="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"
-              alt="Docker Badge"
-            />
-            <SkillBadge
-              link="https://www.linux.org/"
-              shield="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"
-              alt="Linux Badge"
-            />
-
-            <SkillBadge
-              link="https://www.ansible.com/"
-              shield="https://img.shields.io/badge/Ansible-EE0000?style=for-the-badge&logo=ansible&logoColor=white"
-              alt="Ansible Badge"
-            />
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <h3 class="text-lg font-bold text-gray-300">Other Tools</h3>
-          <div class="flex flex-wrap gap-4 mt-2">
-            <SkillBadge
-              link="https://swagger.io/"
-              shield="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black"
-              alt="Swagger Badge"
-            />
-            <SkillBadge
-              link="https://jwt.io/"
-              shield="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white"
-              alt="JWT Badge"
-            />
-            <SkillBadge
-              link="https://github.com/kelektiv/node.bcrypt.js/"
-              shield="https://img.shields.io/badge/Bcrypt-004488?style=for-the-badge&logo=lock&logoColor=white"
-              alt="Bcrypt Badge"
-            />
-          </div>
-        </div>
-      </BaseCard>
+    <!-- Summary Stats -->
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="text-center p-4 bg-gray-800/50 rounded-lg animate-pulse-slow">
+        <div class="text-2xl font-bold text-emerald-400">{{ Object.values(skillsData).reduce((acc, cat) => acc + cat.skills.filter(s => s.level === 5).length, 0) }}</div>
+        <div class="text-sm text-gray-400">Expert Level</div>
+      </div>
+      <div class="text-center p-4 bg-gray-800/50 rounded-lg animate-pulse-slow" style="animation-delay: 0.1s">
+        <div class="text-2xl font-bold text-blue-400">{{ Object.values(skillsData).reduce((acc, cat) => acc + cat.skills.filter(s => s.level === 4).length, 0) }}</div>
+        <div class="text-sm text-gray-400">Advanced</div>
+      </div>
+      <div class="text-center p-4 bg-gray-800/50 rounded-lg animate-pulse-slow" style="animation-delay: 0.2s">
+        <div class="text-2xl font-bold text-yellow-400">{{ Object.values(skillsData).reduce((acc, cat) => acc + cat.skills.filter(s => s.level === 3).length, 0) }}</div>
+        <div class="text-sm text-gray-400">Intermediate</div>
+      </div>
+      <div class="text-center p-4 bg-gray-800/50 rounded-lg animate-pulse-slow" style="animation-delay: 0.3s">
+        <div class="text-2xl font-bold text-indigo-400">{{ Object.values(skillsData).reduce((acc, cat) => acc + cat.skills.length, 0) }}</div>
+        <div class="text-sm text-gray-400">Total Skills</div>
+      </div>
     </div>
   </section>
 </template>
-<!-- class="font-lora grid gap-4 justify-center" style="grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)) -->
+
 <style lang="css" scoped>
 .font-lora {
   font-family: "Lora", serif;
   font-weight: 400;
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s infinite;
+}
+
+/* Smooth transitions for dynamic content */
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Custom scrollbar for select elements */
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* Progress bar animation */
+@keyframes fillProgress {
+  from {
+    width: 0%;
+  }
+}
+
+.animate-fill {
+  animation: fillProgress 1.5s ease-out forwards;
 }
 </style>

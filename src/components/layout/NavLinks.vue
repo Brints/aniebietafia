@@ -25,11 +25,24 @@ const props = defineProps({
 
 <template>
   <nav>
-    <ul :class="['font-lora', 'font-medium', 'text-sm', 'md:text-base', props.isMobile ? 'flex-col space-y-6' : 'flex space-x-10']">
+    <ul
+      :class="[
+        'font-lora',
+        'font-medium',
+        'text-sm',
+        'md:text-base',
+        props.isMobile ? 'flex-col space-y-4' : 'flex space-x-10',
+      ]"
+    >
       <li v-for="link in navLinks" :key="link.to">
         <a
           :href="link.to"
-          class="hover:text-indigo-400 hover:border-b-2 hover:border-indigo-400 transition-colors duration-300 border-b-2 border-transparent pb-1"
+          class="transition-colors duration-300"
+          :class="
+            isMobile
+              ? 'block p-3 rounded-lg text-center bg-gray-700 hover:bg-gray-600 hover:text-white'
+              : 'hover:text-indigo-400 hover:border-b-2 hover:border-indigo-400 border-b-2 border-transparent pb-1'
+          "
         >
           {{ link.name }}
         </a>

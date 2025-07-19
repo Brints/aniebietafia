@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 import NavLinks from "./NavLinks.vue";
+import TheLogo from "./TheLogo.vue";
+import MenuIcon from "../icons/MenuIcon.vue";
+import CloseIcon from "../icons/CloseIcon.vue";
 
 const isMobileMenuOpen = ref(false);
 
@@ -10,49 +13,54 @@ function toggleMobileMenu() {
 </script>
 
 <template>
-  <header class="bg-gray-800 text-white py-4 px-4 md:px-16 flex items-center justify-between relative">
-    <div class="logo roboto-about-me text-2xl font-bold flex flex-col items-center">
-      <h2>Aniebiet <span class="text-amber-700 uppercase">Afia</span></h2>
-      <h2 class="text-indigo-400">Portfolio</h2>
-    </div>
+  <header
+    class="bg-gray-800 text-white py-4 px-4 md:px-16 flex items-center justify-between relative"
+  >
+    <TheLogo />
     <!-- Desktop NavLinks -->
-    <div class="hidden md:block">
+    <div class="hidden md:flex items-center space-x-8">
       <NavLinks />
+      <img
+        src="../../assets/images/dp.jpg"
+        alt="Profile"
+        class="h-10 w-10 rounded-full object-cover"
+      />
     </div>
     <!-- Hamburger Icon for Mobile -->
     <button
-      class="md:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
+      class="md:hidden focus:outline-none"
       @click="toggleMobileMenu"
       aria-label="Toggle navigation menu"
     >
-      <span class="block w-7 h-0.5 bg-white mb-1.5 rounded transition-all duration-300" :class="{ 'rotate-45 translate-y-2': isMobileMenuOpen }"></span>
-      <span class="block w-7 h-0.5 bg-white mb-1.5 rounded transition-all duration-300" :class="{ 'opacity-0': isMobileMenuOpen }"></span>
-      <span class="block w-7 h-0.5 bg-white rounded transition-all duration-300" :class="{ '-rotate-45 -translate-y-2': isMobileMenuOpen }"></span>
+      <MenuIcon v-if="!isMobileMenuOpen" />
+      <CloseIcon v-else />
     </button>
     <!-- Mobile NavLinks -->
-    <transition name="fade">
+    <transition name="slide-fade">
       <div
         v-if="isMobileMenuOpen"
-        class="absolute top-full left-0 w-full bg-gray-900 z-50 flex flex-col items-center py-4 md:hidden shadow-lg"
+        class="absolute top-full left-0 w-full bg-gray-800 md:hidden flex justify-center py-4 z-20"
       >
-        <NavLinks :isMobile="true" />
+        <NavLinks :is-mobile="true" />
       </div>
     </transition>
   </header>
 </template>
 
-<style lang="css" scoped>
+<style scoped>
 .roboto-about-me {
   font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 700;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.2s;
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease-out;
 }
-.fade-enter-from, .fade-leave-to {
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(-20px);
   opacity: 0;
 }
 </style>

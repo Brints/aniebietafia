@@ -1,19 +1,47 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
+// import SkillBadge from "../components/unnamed/SkillBadge.vue";
 import BaseCard from "../components/UI/BaseCard.vue";
+
+// Type definitions
+interface Skill {
+  name: string;
+  level: number;
+  years: number;
+  shield: string;
+  link: string;
+}
+
+interface SkillCategory {
+  title: string;
+  icon: string;
+  skills: Skill[];
+}
+
+interface SkillsData {
+  backend: SkillCategory;
+  frameworks: SkillCategory;
+  databases: SkillCategory;
+  cloud: SkillCategory;
+  frontend: SkillCategory;
+  tools: SkillCategory;
+}
+
+type SkillLevel = 1 | 2 | 3 | 4 | 5;
+type CategoryKey = keyof SkillsData;
 
 // Skill proficiency levels
 const skillLevels = {
-  EXPERT: 5,
-  ADVANCED: 4,
-  INTERMEDIATE: 3,
-  BEGINNER: 2,
-  LEARNING: 1
+  EXPERT: 5 as SkillLevel,
+  ADVANCED: 4 as SkillLevel,
+  INTERMEDIATE: 3 as SkillLevel,
+  BEGINNER: 2 as SkillLevel,
+  LEARNING: 1 as SkillLevel
 };
 
 // Enhanced skill data with proficiency and experience
-const skillsData = {
+const skillsData: SkillsData = {
   backend: {
     title: "Backend Languages",
     icon: "🚀",
@@ -85,18 +113,18 @@ const skillsData = {
 };
 
 // Filter state
-const selectedFilter = ref('all');
-const selectedLevel = ref('all');
+const selectedFilter = ref<'all' | CategoryKey>('all');
+const selectedLevel = ref<'all' | string>('all');
 
 // Filter options
 const filterOptions = [
-  { value: 'all', label: 'All Skills' },
-  { value: 'backend', label: 'Backend' },
-  { value: 'frameworks', label: 'Frameworks' },
-  { value: 'databases', label: 'Databases' },
-  { value: 'cloud', label: 'Cloud & DevOps' },
-  { value: 'frontend', label: 'Frontend' },
-  { value: 'tools', label: 'Tools' }
+  { value: 'all' as const, label: 'All Skills' },
+  { value: 'backend' as const, label: 'Backend' },
+  { value: 'frameworks' as const, label: 'Frameworks' },
+  { value: 'databases' as const, label: 'Databases' },
+  { value: 'cloud' as const, label: 'Cloud & DevOps' },
+  { value: 'frontend' as const, label: 'Frontend' },
+  { value: 'tools' as const, label: 'Tools' }
 ];
 
 const levelOptions = [
@@ -109,17 +137,23 @@ const levelOptions = [
 ];
 
 // Computed filtered skills
-const filteredSkills = computed(() => {
-  let filtered = { ...skillsData };
+const filteredSkills = computed((): Partial<SkillsData> => {
+  let filtered: Partial<SkillsData> = { ...skillsData };
 
   if (selectedFilter.value !== 'all') {
-    filtered = { [selectedFilter.value]: skillsData[selectedFilter.value] };
+    const categoryKey = selectedFilter.value as CategoryKey;
+    filtered = { [categoryKey]: skillsData[categoryKey] };
   }
 
   if (selectedLevel.value !== 'all') {
-    const levelValue = parseInt(selectedLevel.value);
-    Object.keys(filtered).forEach(category => {
-      filtered[category].skills = filtered[category].skills.filter(skill => skill.level === levelValue);
+    const levelValue = parseInt(selectedLevel.value) as SkillLevel;
+    (Object.keys(filtered) as CategoryKey[]).forEach(category => {
+      if (filtered[category]) {
+        filtered[category] = {
+          ...filtered[category]!,
+          skills: filtered[category]!.skills.filter((skill: Skill) => skill.level === levelValue)
+        };
+      }
     });
   }
 
@@ -127,13 +161,19 @@ const filteredSkills = computed(() => {
 });
 
 // Helper functions
-const getLevelText = (level) => {
-  const levels = { 5: 'Expert', 4: 'Advanced', 3: 'Intermediate', 2: 'Beginner', 1: 'Learning' };
+const getLevelText = (level: SkillLevel): string => {
+  const levels: Record<SkillLevel, string> = {
+    5: 'Expert',
+    4: 'Advanced',
+    3: 'Intermediate',
+    2: 'Beginner',
+    1: 'Learning'
+  };
   return levels[level];
 };
 
-const getLevelColor = (level) => {
-  const colors = {
+const getLevelColor = (level: SkillLevel): string => {
+  const colors: Record<SkillLevel, string> = {
     5: 'bg-emerald-500',
     4: 'bg-blue-500',
     3: 'bg-yellow-500',
@@ -194,6 +234,7 @@ const getLevelColor = (level) => {
         :style="`animation-delay: ${index * 0.1}s`"
       >
         <BaseCard
+          v-if="category"
           customClass="h-full hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20"
           customStyle="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border: 1px solid rgba(99, 102, 241, 0.2);"
         >
@@ -214,7 +255,7 @@ const getLevelColor = (level) => {
               v-for="(skill, skillIndex) in category.skills"
               :key="skill.name"
               class="group relative bg-gray-800/50 rounded-lg p-4 hover:bg-gray-700/50 transition-all duration-300 animate-slide-in-left"
-              :style="`animation-delay: ${(index * 0.1) + (skillIndex * 0.05)}s`"
+              :style="`animation-delay: ${((index as number) * 0.1) + ((skillIndex as number) * 0.05)}s`"
             >
               <!-- Skill Header -->
               <div class="flex items-center justify-between mb-3">
@@ -228,7 +269,7 @@ const getLevelColor = (level) => {
                   </div>
                 </div>
                 <div class="text-right">
-                  <span class="text-xs font-medium text-gray-300">{{ getLevelText(skill.level) }}</span>
+                  <span class="text-xs font-medium text-gray-300">{{ getLevelText(skill.level as SkillLevel) }}</span>
                 </div>
               </div>
 
@@ -236,9 +277,9 @@ const getLevelColor = (level) => {
               <div class="relative">
                 <div class="w-full bg-gray-700 rounded-full h-2">
                   <div
-                    :class="getLevelColor(skill.level)"
+                    :class="getLevelColor(skill.level as SkillLevel)"
                     class="h-2 rounded-full transition-all duration-1000 ease-out"
-                    :style="`width: ${(skill.level / 5) * 100}%; animation-delay: ${(index * 0.2) + (skillIndex * 0.1)}s`"
+                    :style="`width: ${(skill.level / 5) * 100}%; animation-delay: ${((index as number) * 0.2) + ((skillIndex as number) * 0.1)}s`"
                   ></div>
                 </div>
                 <!-- Stars -->
@@ -258,7 +299,7 @@ const getLevelColor = (level) => {
               <div class="absolute inset-0 bg-indigo-600/90 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div class="text-center text-white p-4">
                   <h5 class="font-bold mb-2">{{ skill.name }}</h5>
-                  <p class="text-sm mb-2">{{ getLevelText(skill.level) }} Level</p>
+                  <p class="text-sm mb-2">{{ getLevelText(skill.level as SkillLevel) }} Level</p>
                   <p class="text-xs">{{ skill.years }}+ years of hands-on experience</p>
                   <div class="mt-2">
                     <a :href="skill.link" target="_blank" class="text-xs underline hover:text-indigo-200">
@@ -276,19 +317,19 @@ const getLevelColor = (level) => {
     <!-- Summary Stats -->
     <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="text-center p-4 bg-gray-800/50 rounded-lg animate-pulse-slow">
-        <div class="text-2xl font-bold text-emerald-400">{{ Object.values(skillsData).reduce((acc, cat) => acc + cat.skills.filter(s => s.level === 5).length, 0) }}</div>
+        <div class="text-2xl font-bold text-emerald-400">{{ Object.values(skillsData).reduce((acc: number, cat: SkillCategory) => acc + cat.skills.filter((s: Skill) => s.level === 5).length, 0) }}</div>
         <div class="text-sm text-gray-400">Expert Level</div>
       </div>
       <div class="text-center p-4 bg-gray-800/50 rounded-lg animate-pulse-slow" style="animation-delay: 0.1s">
-        <div class="text-2xl font-bold text-blue-400">{{ Object.values(skillsData).reduce((acc, cat) => acc + cat.skills.filter(s => s.level === 4).length, 0) }}</div>
+        <div class="text-2xl font-bold text-blue-400">{{ Object.values(skillsData).reduce((acc: number, cat: SkillCategory) => acc + cat.skills.filter((s: Skill) => s.level === 4).length, 0) }}</div>
         <div class="text-sm text-gray-400">Advanced</div>
       </div>
       <div class="text-center p-4 bg-gray-800/50 rounded-lg animate-pulse-slow" style="animation-delay: 0.2s">
-        <div class="text-2xl font-bold text-yellow-400">{{ Object.values(skillsData).reduce((acc, cat) => acc + cat.skills.filter(s => s.level === 3).length, 0) }}</div>
+        <div class="text-2xl font-bold text-yellow-400">{{ Object.values(skillsData).reduce((acc: number, cat: SkillCategory) => acc + cat.skills.filter((s: Skill) => s.level === 3).length, 0) }}</div>
         <div class="text-sm text-gray-400">Intermediate</div>
       </div>
       <div class="text-center p-4 bg-gray-800/50 rounded-lg animate-pulse-slow" style="animation-delay: 0.3s">
-        <div class="text-2xl font-bold text-indigo-400">{{ Object.values(skillsData).reduce((acc, cat) => acc + cat.skills.length, 0) }}</div>
+        <div class="text-2xl font-bold text-indigo-400">{{ Object.values(skillsData).reduce((acc: number, cat: SkillCategory) => acc + cat.skills.length, 0) }}</div>
         <div class="text-sm text-gray-400">Total Skills</div>
       </div>
     </div>

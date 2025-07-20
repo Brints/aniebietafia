@@ -186,7 +186,7 @@ const getLevelColor = (level: SkillLevel): string => {
 <template>
   <section class="p-6 md:p-12 bg-gray-900 text-gray-300">
     <!-- Title -->
-    <BracketLikeCurve title="Awesome Skills" :animated="false"/>
+    <BracketLikeCurve title="Skills" :animated="false"/>
 
     <!-- Enhanced Description -->
     <div class="max-w-4xl mx-auto mb-8">
@@ -234,7 +234,7 @@ const getLevelColor = (level: SkillLevel): string => {
       >
         <BaseCard
           v-if="category"
-          customClass="h-full hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20"
+          customClass="h-full transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20"
           customStyle="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border: 1px solid rgba(99, 102, 241, 0.2);"
         >
           <!-- Category Header -->

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import emailjs from "@emailjs/browser";
 import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 import FormField from "../components/UI/FormField.vue";
@@ -10,18 +10,88 @@ const message = ref("");
 const formStatus = ref<"idle" | "submitting" | "success" | "error">("idle");
 const formMessage = ref("");
 
-const handleSubmit = async () => {
-  formStatus.value = "submitting";
-  formMessage.value = "";
+// Individual field validation states
+const fieldErrors = ref({
+  fullName: "",
+  email: "",
+  message: ""
+});
 
-  if (!fullName.value || !email.value || !message.value) {
+const fieldSuccess = ref({
+  fullName: false,
+  email: false,
+  message: false
+});
+
+// Email validation regex
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Real-time validation functions
+const validateFullName = () => {
+  if (!fullName.value.trim()) {
+    fieldErrors.value.fullName = "Full name is required";
+    fieldSuccess.value.fullName = false;
+  } else if (fullName.value.trim().length < 2) {
+    fieldErrors.value.fullName = "Name must be at least 2 characters";
+    fieldSuccess.value.fullName = false;
+  } else {
+    fieldErrors.value.fullName = "";
+    fieldSuccess.value.fullName = true;
+  }
+};
+
+const validateEmail = () => {
+  if (!email.value.trim()) {
+    fieldErrors.value.email = "Email address is required";
+    fieldSuccess.value.email = false;
+  } else if (!emailRegex.test(email.value)) {
+    fieldErrors.value.email = "Please enter a valid email address";
+    fieldSuccess.value.email = false;
+  } else {
+    fieldErrors.value.email = "";
+    fieldSuccess.value.email = true;
+  }
+};
+
+const validateMessage = () => {
+  if (!message.value.trim()) {
+    fieldErrors.value.message = "Message is required";
+    fieldSuccess.value.message = false;
+  } else if (message.value.trim().length < 10) {
+    fieldErrors.value.message = "Message must be at least 10 characters";
+    fieldSuccess.value.message = false;
+  } else {
+    fieldErrors.value.message = "";
+    fieldSuccess.value.message = true;
+  }
+};
+
+// Check if form is valid
+const isFormValid = computed(() => {
+  return fieldSuccess.value.fullName &&
+         fieldSuccess.value.email &&
+         fieldSuccess.value.message &&
+         !fieldErrors.value.fullName &&
+         !fieldErrors.value.email &&
+         !fieldErrors.value.message;
+});
+
+const handleSubmit = async () => {
+  // Validate all fields before submission
+  validateFullName();
+  validateEmail();
+  validateMessage();
+
+  if (!isFormValid.value) {
     formStatus.value = "error";
-    formMessage.value = "Please fill out all fields before submitting.";
+    formMessage.value = "Please fix the errors above before submitting.";
     return;
   }
 
+  formStatus.value = "submitting";
+  formMessage.value = "";
+
   try {
-    // TODO: Replace with your EmailJS Service ID, Template ID, and Public Key
     const serviceID = "service_5ebutin";
     const templateID = "template_cxnzwif";
     const publicKey = "hLCIOa6lJcn3wtPj9";
@@ -36,14 +106,31 @@ const handleSubmit = async () => {
 
     formStatus.value = "success";
     formMessage.value = "Your message has been sent successfully! Thank you for reaching out.";
+
+    // Reset form
     fullName.value = "";
     email.value = "";
     message.value = "";
+    fieldErrors.value = { fullName: "", email: "", message: "" };
+    fieldSuccess.value = { fullName: false, email: false, message: false };
   } catch (error) {
     formStatus.value = "error";
     formMessage.value = "Sorry, there was an error sending your message. Please try again later.";
     console.error("EmailJS error:", error);
   }
+};
+
+// Handle field blur events for validation
+const handleFullNameBlur = () => {
+  if (fullName.value.trim()) validateFullName();
+};
+
+const handleEmailBlur = () => {
+  if (email.value.trim()) validateEmail();
+};
+
+const handleMessageBlur = () => {
+  if (message.value.trim()) validateMessage();
 };
 </script>
 
@@ -230,44 +317,115 @@ const handleSubmit = async () => {
         </p>
 
         <!-- Contact Form -->
-        <form @submit.prevent="handleSubmit" class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+        <form @submit.prevent="handleSubmit" class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg space-y-6">
           <FormField
             label="Your Full Name"
             name="fullname"
             type="text"
             placeholder="John Doe"
             v-model="fullName"
+            :error="fieldErrors.fullName"
+            :success="fieldSuccess.fullName"
+            :loading="formStatus === 'submitting'"
+            :required="true"
+            icon="👤"
+            @blur="handleFullNameBlur"
           />
+
           <FormField
             label="Your Email"
             name="email"
             type="email"
             placeholder="john.doe@example.com"
             v-model="email"
+            :error="fieldErrors.email"
+            :success="fieldSuccess.email"
+            :loading="formStatus === 'submitting'"
+            :required="true"
+            icon="📧"
+            @blur="handleEmailBlur"
           />
+
           <FormField
             label="Your Message"
             name="message"
             type="textarea"
-            placeholder="I'd like to discuss..."
+            placeholder="Tell me about your project, idea, or just say hello! I'd love to hear from you..."
             v-model="message"
+            :error="fieldErrors.message"
+            :success="fieldSuccess.message"
+            :loading="formStatus === 'submitting'"
+            :required="true"
+            icon="💬"
+            @blur="handleMessageBlur"
           />
+
           <button
             type="submit"
-            :disabled="formStatus === 'submitting'"
-            class="w-full bg-indigo-500 text-white font-bold py-2 rounded hover:bg-indigo-600 transition duration-300 disabled:bg-indigo-400 disabled:cursor-not-allowed"
+            :disabled="formStatus === 'submitting' || !isFormValid"
+            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:bg-gray-600 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 flex items-center justify-center gap-2"
           >
-            {{ formStatus === 'submitting' ? 'Sending...' : 'Send Message' }}
+            <svg
+              v-if="formStatus === 'submitting'"
+              class="animate-spin h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>{{ formStatus === 'submitting' ? 'Sending Message...' : 'Send Message' }}</span>
           </button>
+
+          <!-- Enhanced success/error messages -->
           <div
             v-if="formMessage"
-            class="mt-4 text-center p-2 rounded-lg"
+            class="p-4 rounded-lg flex items-start gap-3 transition-all duration-300"
             :class="{
-              'bg-green-800 text-green-200': formStatus === 'success',
-              'bg-red-800 text-red-200': formStatus === 'error',
+              'bg-green-900/50 border border-green-500/20': formStatus === 'success',
+              'bg-red-900/50 border border-red-500/20': formStatus === 'error',
             }"
           >
-            {{ formMessage }}
+            <!-- Success icon -->
+            <svg
+              v-if="formStatus === 'success'"
+              class="h-5 w-5 text-green-400 flex-shrink-0 mt-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+
+            <!-- Error icon -->
+            <svg
+              v-else-if="formStatus === 'error'"
+              class="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+
+            <div>
+              <p
+                class="text-sm font-medium"
+                :class="{
+                  'text-green-300': formStatus === 'success',
+                  'text-red-300': formStatus === 'error',
+                }"
+              >
+                {{ formMessage }}
+              </p>
+              <p
+                v-if="formStatus === 'success'"
+                class="text-xs text-green-400 mt-1"
+              >
+                I'll get back to you as soon as possible!
+              </p>
+            </div>
           </div>
         </form>
       </section>

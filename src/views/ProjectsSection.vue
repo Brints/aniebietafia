@@ -3,8 +3,7 @@ import { ref, computed } from 'vue';
 import ProjectsCard from "../components/UI/ProjectsCard.vue";
 import ProjectModal from "../components/UI/ProjectModal.vue";
 import ProjectFilter from "../components/UI/ProjectFilter.vue";
-import LiveLinkButton from "../components/buttons/LiveLinkButton.vue";
-import GitHubRepoButton from "../components/buttons/GitHubRepoButton.vue";
+import ExternalLinkButton from "../components/buttons/ExternalLinkButton.vue";
 import TechTools from "../components/buttons/TechTools.vue";
 import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 import { projects, projectCategories, projectStatuses } from "../data/projects";
@@ -155,9 +154,9 @@ const closeModal = () => {
             </template>
             <template #actions>
               <div class="flex flex-wrap gap-2">
-                <LiveLinkButton v-if="project.liveLink" :link="project.liveLink" />
-                <LiveLinkButton v-if="project.issueLink" :link="project.issueLink" :is-issue="true" />
-                <GitHubRepoButton v-if="project.codeLink" :link="project.codeLink" />
+                <ExternalLinkButton v-if="project.liveLink" :href="project.liveLink" />
+                <ExternalLinkButton v-if="project.issueLink" :href="project.issueLink" type="issue" />
+                <ExternalLinkButton v-if="project.codeLink" :href="project.codeLink" />
               </div>
             </template>
           </ProjectsCard>
@@ -192,9 +191,9 @@ const closeModal = () => {
             </template>
             <template #actions>
               <div class="flex flex-wrap gap-2">
-                <LiveLinkButton v-if="project.liveLink" :link="project.liveLink" />
-                <LiveLinkButton v-if="project.issueLink" :link="project.issueLink" :is-issue="true" />
-                <GitHubRepoButton v-if="project.codeLink" :link="project.codeLink" />
+                <ExternalLinkButton v-if="project.liveLink" :href="project.liveLink" />
+                <ExternalLinkButton v-if="project.issueLink" :href="project.issueLink" type="issue" />
+                <ExternalLinkButton v-if="project.codeLink" :href="project.codeLink" />
               </div>
             </template>
           </ProjectsCard>
@@ -223,9 +222,9 @@ const closeModal = () => {
           </template>
           <template #actions>
             <div class="flex flex-wrap gap-2">
-              <LiveLinkButton v-if="project.liveLink" :link="project.liveLink" />
-              <LiveLinkButton v-if="project.issueLink" :link="project.issueLink" :is-issue="true" />
-              <GitHubRepoButton v-if="project.codeLink" :link="project.codeLink" />
+              <ExternalLinkButton v-if="project.liveLink" :href="project.liveLink" />
+              <ExternalLinkButton v-if="project.issueLink" :href="project.issueLink" type="issue" />
+              <ExternalLinkButton v-if="project.codeLink" :href="project.codeLink" />
             </div>
           </template>
         </ProjectsCard>

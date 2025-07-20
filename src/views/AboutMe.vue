@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import ContactMe from "../components/buttons/ContactMe.vue";
-import ViewResume from "../components/buttons/ViewResume.vue";
-import DownloadResume from "../components/buttons/DownloadResume.vue";
+import ResumeButton from "../components/buttons/ResumeButton.vue";
 import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 </script>
 
@@ -270,8 +269,20 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
 
       <!-- Action Buttons -->
       <div class="mt-8 pb-3 flex flex-wrap justify-center gap-4">
-        <ViewResume />
-        <DownloadResume />
+        <ResumeButton
+          text="View Resume"
+          href='https://docs.google.com/document/d/1DIj7B9wx47pBMTD4-cg5ypzbcgWpr2_hJqspr79y0-M/edit?usp=sharing'
+          variant="primary"
+          size="md"
+          showIcon
+          actionType="view" />
+        <ResumeButton
+          text="Download Resume"
+          href="/java-developer-aniebietafia.pdf"
+          variant="secondary"
+          size="md"
+          showIcon
+          actionType="download" />
         <ContactMe />
       </div>
     </div>

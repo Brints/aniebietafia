@@ -10,8 +10,8 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
     <BracketLikeCurve title="Elevator Pitch" variant="secondary"/>
 
     <!-- Left Section (Placeholder) -->
-    <div class="flex flex-col md:flex-row hidden items-center justify-between">
-    <div class="w-full md:w-1/2 p-4 flex justify-center">
+    <div class="flex flex-col md:flex-row items-center justify-between">
+    <div class="hidden md:flex w-full md:w-1/2 p-4 justify-center">
       <div
         class="h-80 w-full bg-gray-800 rounded-lg flex items-center justify-center shadow-lg p-4"
       >

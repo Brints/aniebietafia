@@ -25,7 +25,7 @@ const statusBadgeClass = computed(() => {
 </script>
 
 <template>
-  <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-blue-500 group">
+  <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:border-blue-500 group">
     <!-- Project Image -->
     <div v-if="project.image" class="relative h-48 overflow-hidden">
       <img

@@ -66,7 +66,6 @@ export const projects: Project[] = [
     description: "An AI-driven sales integration tool that automates lead generation and customer outreach, providing businesses with a streamlined way to connect with potential clients based on their specific needs and target audience.",
     detailedDescription: "Sales Agent is an AI-Powered Integration tool that introduces a cutting-edge solution for business owners to discover potential leads with ease. By specifying their business type and target audience through a simple chat with a sales agent, users receive a curated list of relevant leads in an organized format. This streamlined process enhances customer outreach and supports business growth.",
     tools: ["Java", "Spring Boot", "PostgreSQL", "MistralAI API"],
-    liveLink: "https://github.com/telexintegrations/sales-agent",
     codeLink: "https://github.com/telexintegrations/sales-agent",
     category: "Integration",
     status: "completed",

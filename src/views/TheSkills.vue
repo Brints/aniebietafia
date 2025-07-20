@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
-// import SkillBadge from "../components/unnamed/SkillBadge.vue";
 import BaseCard from "../components/UI/BaseCard.vue";
 
 // Type definitions
@@ -48,7 +47,7 @@ const skillsData: SkillsData = {
     skills: [
       { name: "Java", level: skillLevels.EXPERT, years: 3, shield: "https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white", link: "https://www.java.com/" },
       { name: "Python", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white", link: "https://www.python.org/" },
-      { name: "Node.js", level: skillLevels.ADVANCED, years: 2, shield: "https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white", link: "https://nodejs.org/" },
+      { name: "Node.js", level: skillLevels.EXPERT, years: 3, shield: "https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white", link: "https://nodejs.org/" },
       { name: "Go", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white", link: "https://golang.org/" },
       { name: "Rust", level: skillLevels.LEARNING, years: 0.5, shield: "https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white", link: "https://www.rust-lang.org/" },
       { name: "C", level: skillLevels.INTERMEDIATE, years: 1, shield: "https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white", link: "https://en.wikipedia.org/wiki/C_(programming_language)" }

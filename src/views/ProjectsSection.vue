@@ -144,14 +144,14 @@ const closeModal = () => {
         >
           <ProjectsCard :project="project" @open-modal="openModal">
             <template #header>
-              <h3 class="text-lg font-semibold text-white">{{ project.title }}</h3>
+              <h3 class="font-roboto text-lg font-semibold text-white">{{ project.title }}</h3>
             </template>
             <template #description>
               {{ project.description }}
             </template>
             <template #tools>
               <h4 class="text-lg font-semibold mb-2">Tech Stack</h4>
-              <TechTools :tools="project.tools" />
+              <TechTools :tools="project.tools" variant="colorful" size="sm"/>
             </template>
             <template #actions>
               <div class="flex flex-wrap gap-2">
@@ -167,7 +167,7 @@ const closeModal = () => {
 
     <!-- All Projects Grid with enhanced responsive layout -->
     <div v-if="!showFeaturedOnly || sortedProjects.some(p => !p.featured)">
-      <h3 v-if="!showFeaturedOnly" class="text-2xl font-bold text-white mb-6">
+      <h3 v-if="!showFeaturedOnly" class="font-roboto text-2xl font-bold text-white mb-6">
         {{ sortedProjects.some(p => p.featured) ? 'All Projects' : 'Projects' }}
       </h3>
 
@@ -176,7 +176,7 @@ const closeModal = () => {
         <div
           v-for="(project, index) in showFeaturedOnly ? sortedProjects : sortedProjects.filter(p => !p.featured || !sortedProjects.some(fp => fp.featured))"
           :key="project.title"
-          class="transform transition-all duration-500 ease-out hover:-translate-y-2"
+          class="font-roboto transform transition-all duration-500 ease-out hover:-translate-y-2"
           :style="{ animationDelay: `${index * 0.1}s` }"
         >
           <ProjectsCard :project="project" @open-modal="openModal" class="h-full">
@@ -188,7 +188,7 @@ const closeModal = () => {
             </template>
             <template #tools>
               <h4 class="text-lg font-semibold mb-2">Tech Stack</h4>
-              <TechTools :tools="project.tools" />
+              <TechTools :tools="project.tools" variant="compact"/>
             </template>
             <template #actions>
               <div class="flex flex-wrap gap-2">
@@ -219,7 +219,7 @@ const closeModal = () => {
           </template>
           <template #tools>
             <h4 class="text-lg font-semibold mb-2">Tech Stack</h4>
-            <TechTools :tools="project.tools" />
+            <TechTools :tools="project.tools" size="lg" variant="compact"/>
           </template>
           <template #actions>
             <div class="flex flex-wrap gap-2">
@@ -258,6 +258,11 @@ const closeModal = () => {
 .font-lora {
   font-family: "Lora", serif;
   font-weight: 400;
+}
+
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
 }
 
 /* Custom animations */

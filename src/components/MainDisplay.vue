@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import TheHeader from "./layout/TheHeader.vue";
-import AboutMe from "../views/AboutMe.vue";
+// import AboutMe from "../views/AboutMe.vue";
 import TheFooter from "./layout/TheFooter.vue";
-import ProjectsSection from "../views/ProjectsSection.vue";
-import TheSkills from "../views/TheSkills.vue";
-import CertificationSection from "../views/CertificationSection.vue";
-import ContactMe from "../views/ContactMe.vue";
-import ElevatorPitch from "../views/ElevatorPitch.vue";
 </script>
 
 <template>
@@ -15,29 +10,7 @@ import ElevatorPitch from "../views/ElevatorPitch.vue";
       <TheHeader />
     </div>
 
-    <div class="about-me-section" id="about">
-      <AboutMe />
-    </div>
-
-    <div class="projects-section" id="projects">
-      <ProjectsSection />
-    </div>
-
-    <div class="elevator-pitch-section" id="elevator-pitch">
-      <ElevatorPitch />
-    </div>
-
-    <div class="skills-section" id="skills">
-      <TheSkills />
-    </div>
-
-    <div class="certification-section" id="certifications">
-      <CertificationSection />
-    </div>
-
-    <div class="contact-me-section" id="contact">
-      <ContactMe />
-    </div>
+    <router-view></router-view>
 
     <div class="footer-section">
       <TheFooter />

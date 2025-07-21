@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router";
-import AboutMe from "../views/AboutMe.vue";
-import ProjectsSection from "../views/ProjectsSection.vue";
-import ElevatorPitch from "../views/ElevatorPitch.vue";
-import TheSkills from "../views/TheSkills.vue";
-import CertificationSection from "../views/CertificationSection.vue";
-import ContactMe from "../views/ContactMe.vue";
+
+const AboutMe = () => import("../views/AboutMe.vue");
+const ProjectsSection = () => import("../views/ProjectsSection.vue");
+const ElevatorPitch = () => import("../views/ElevatorPitch.vue");
+const TheSkills = () => import("../views/TheSkills.vue");
+const CertificationSection = () => import("../views/CertificationSection.vue");
+const ContactMe = () => import("../views/ContactMe.vue");
 
 const routes: Array<RouteRecordRaw> = [
     { path: '/', name: 'home', redirect: '/about' },

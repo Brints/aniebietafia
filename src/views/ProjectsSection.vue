@@ -149,7 +149,6 @@ const closeModal = () => {
               {{ project.description }}
             </template>
             <template #tools>
-              <h4 class="text-lg font-semibold mb-2">Tech Stack</h4>
               <TechTools :tools="project.tools" variant="colorful" size="sm"/>
             </template>
             <template #actions>
@@ -186,7 +185,6 @@ const closeModal = () => {
               {{ project.description }}
             </template>
             <template #tools>
-              <h4 class="text-lg font-semibold mb-2">Tech Stack</h4>
               <TechTools :tools="project.tools" variant="compact"/>
             </template>
             <template #actions>

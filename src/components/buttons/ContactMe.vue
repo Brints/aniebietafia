@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 interface Props {
-  href?: string
+  to?: string
   text?: string
   variant?: 'primary' | 'secondary' | 'outline'
   size?: 'sm' | 'md' | 'lg'
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  href: '#contact',
+  to: 'contact',
   text: 'Contact Me',
   variant: 'outline',
   size: 'md',
@@ -37,21 +37,31 @@ const buttonClasses = computed(() => {
   return `${base} ${variants[props.variant]} ${sizes[props.size]}`
 })
 
-const handleClick = (event: Event) => {
-  // Only handle smooth scrolling for internal anchors
-  if (props.href.startsWith('#') && props.smooth) {
-    event.preventDefault()
-    const targetId = props.href.substring(1)
-    const targetElement = document.getElementById(targetId)
+// const handleClick = (event: Event) => {
+//   // Only handle smooth scrolling for internal anchors
+//   if (props.href.startsWith('#') && props.smooth) {
+//     event.preventDefault()
+//     const targetId = props.href.substring(1)
+//     const targetElement = document.getElementById(targetId)
+//
+//     if (targetElement) {
+//       targetElement.scrollIntoView({
+//         behavior: 'smooth',
+//         block: 'start'
+//       })
+//     }
+//   }
+//
+//   // Track analytics
+//   if (typeof window !== 'undefined' && 'gtag' in window) {
+//     (window as any).gtag('event', 'contact_button_click', {
+//       event_category: 'engagement',
+//       event_label: 'contact_me_button'
+//     })
+//   }
+// }
 
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      })
-    }
-  }
-
+const handleClick = () => {
   // Track analytics
   if (typeof window !== 'undefined' && 'gtag' in window) {
     (window as any).gtag('event', 'contact_button_click', {
@@ -59,14 +69,16 @@ const handleClick = (event: Event) => {
       event_label: 'contact_me_button'
     })
   }
+  // Optionally scroll to top after navigation
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 </script>
 
 <template>
-  <a
-    :href="href"
+  <router-link
+    :to="{ name: props.to }"
     :class="buttonClasses"
-    :aria-label="`${text}${href.startsWith('#') ? ' - Scroll to contact section' : ''}`"
+    :aria-label="`${text} - Scroll to contact section`"
     @click="handleClick"
   >
     <!-- Contact Icon -->
@@ -88,7 +100,7 @@ const handleClick = (event: Event) => {
     </svg>
 
     <span>{{ text }}</span>
-  </a>
+  </router-link>
 </template>
 
 <style scoped lang="css"></style>

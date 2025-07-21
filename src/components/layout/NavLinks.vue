@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, onMounted, onUnmounted } from 'vue';
+import { useRoute } from "vue-router";
 
 interface NavLink {
   name: string;
@@ -7,14 +7,14 @@ interface NavLink {
   icon?: string;
 }
 
-const navLinks = ref<NavLink[]>([
-  { name: 'About', to: '#about', icon: '👨‍💻' },
-  { name: 'Projects', to: '#projects', icon: '🚀' },
-  { name: 'Elevator Pitch', to: '#elevator-pitch', icon: '💡' },
-  { name: 'Skills', to: '#skills', icon: '⚡' },
-  { name: 'Certifications', to: '#certifications', icon: '🏆' },
-  { name: 'Contact', to: '#contact', icon: '📧' }
-]);
+const navLinks: NavLink[] = [
+  { name: 'About', to: 'about', icon: '🧑‍💻' },
+  { name: 'Projects', to: 'projects', icon: '🚀' },
+  { name: 'Elevator Pitch', to: 'elevator-pitch', icon: '💡' },
+  { name: 'Skills', to: 'skills', icon: '⚡' },
+  { name: 'Certifications', to: 'certifications', icon: '🏆' },
+  { name: 'Contact', to: 'contact', icon: '📧' }
+];
 
 const props = defineProps({
   isMobile: {
@@ -23,92 +23,10 @@ const props = defineProps({
   }
 });
 
-const activeSection = ref('about');
+const route = useRoute();
 
-// Smooth scroll function
-const scrollToSection = (event: Event, sectionId: string) => {
-  event.preventDefault();
-  const element = document.querySelector(sectionId);
-  if (element) {
-    // Immediately update active section when clicked
-    activeSection.value = sectionId.substring(1);
-
-    element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  }
-};
-
-// Intersection Observer for active section tracking
-const observeSection = () => {
-  const sections = document.querySelectorAll('section[id]');
-
-  // If no sections found, try alternative selectors
-  if (sections.length === 0) {
-    console.warn('No sections with IDs found. Make sure your sections have proper id attributes.');
-    return null;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
-          activeSection.value = entry.target.id;
-        }
-      });
-    },
-    {
-      threshold: [0.1, 0.3, 0.5, 0.7],
-      rootMargin: '-100px 0px -100px 0px'
-    }
-  );
-
-  sections.forEach((section) => observer.observe(section));
-  return observer;
-};
-
-// Alternative: Manual scroll tracking
-const handleScroll = () => {
-  const sections = document.querySelectorAll('section[id]');
-  const scrollPosition = window.scrollY + 150; // Offset for header
-
-  sections.forEach((section) => {
-    const element = section as HTMLElement;
-    const offsetTop = element.offsetTop;
-    const offsetHeight = element.offsetHeight;
-
-    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-      activeSection.value = element.id;
-    }
-  });
-};
-
-let observer: IntersectionObserver | null = null;
-
-onMounted(() => {
-  // Try intersection observer first
-  observer = observeSection();
-
-  // Fallback to scroll listener if intersection observer fails
-  if (!observer) {
-    window.addEventListener('scroll', handleScroll);
-    // Initial check
-    handleScroll();
-  }
-});
-
-onUnmounted(() => {
-  if (observer) {
-    observer.disconnect();
-  } else {
-    window.removeEventListener('scroll', handleScroll);
-  }
-});
-
-// Check if section is active
 const isActive = (link: NavLink) => {
-  return activeSection.value === link.to.substring(1);
+  return route.name === link.to;
 };
 </script>
 
@@ -124,9 +42,8 @@ const isActive = (link: NavLink) => {
       ]"
     >
       <li v-for="link in navLinks" :key="link.to" class="relative">
-        <a
-          :href="link.to"
-          @click="scrollToSection($event, link.to)"
+        <router-link
+          :to="{ name: link.to }"
           class="nav-link group relative flex items-center gap-2 transition-all duration-300 ease-in-out"
           :class="[
             isMobile
@@ -169,7 +86,7 @@ const isActive = (link: NavLink) => {
             v-if="!isMobile && isActive(link)"
             class="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse"
           ></div>
-        </a>
+        </router-link>
 
         <!-- Mobile active indicator -->
         <div

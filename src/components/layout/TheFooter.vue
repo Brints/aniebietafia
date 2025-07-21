@@ -38,10 +38,12 @@ const socialLinks = [
 ];
 
 const quickLinks = [
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" }
+  { name: "About", to: "about" },
+  { name: "Projects", to: "projects" },
+  { name: "Elevator Pitch", to: "elevator-pitch" },
+  { name: "Skills", to: "skills" },
+  { name: "Certifications", to: "certifications" },
+  { name: "Contact", to: "contact" }
 ];
 
 const scrollToTop = () => {
@@ -100,14 +102,15 @@ const scrollToTop = () => {
               Quick Navigation
             </h3>
             <nav class="space-y-2">
-              <a
+              <router-link
                 v-for="link in quickLinks"
                 :key="link.name"
-                :href="link.href"
+                :to="{ name: link.to }"
                 class="block text-gray-400 hover:text-indigo-400 transition-colors duration-300 text-sm hover:translate-x-1 transform"
+                @click.native="scrollToTop"
               >
                 {{ link.name }}
-              </a>
+              </router-link>
             </nav>
           </div>
 

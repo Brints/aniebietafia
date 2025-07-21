@@ -6,7 +6,7 @@ import TheFooter from "./layout/TheFooter.vue";
 
 <template>
   <div class="wrapper">
-    <div class="header-section md:sticky top-0 z-50 bg-gray-900 shadow-md">
+    <div class="header-section top-0 z-50 bg-gray-900 shadow-md">
       <TheHeader />
     </div>
 

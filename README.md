@@ -1,5 +1,25 @@
-# Vue 3 + TypeScript + Vite
+# Aniebiet Afia | Portfolio
+Aniebiet Afia is a software engineer with a passion for building impactful applications. This portfolio showcases my projects, skills, and experiences in the field of software development. Through this portfolio, I aim to demonstrate my technical abilities and my commitment to continuous learning and improvement.
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Tools & Technologies
+- **Languages**: TypeScript
+- **Frameworks**: Vue.js, Node.js, Tailwind CSS
+- **Hosting**: Heroku
+- **Version Control**: Git, GitHub
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Projects
+### 1. [Project Name](#)
+- **Description**: A brief description of the project, its purpose, and the technologies used.
+- **Features**: Key features of the project.
+- **Link**: [Live Demo](#) | [Source Code](#)
+- **Screenshot**: ![Project Screenshot](#)
+- **Technologies Used**: Vue.js, Node.js, Tailwind CSS
+- **Status**: In Progress / Completed
+
+### 2. [Project Name](#)
+- **Description**: A brief description of the project, its purpose, and the technologies used
+- **Features**: Key features of the project.
+- **Link**: [Live Demo](#) | [Source Code](#)
+- **Screenshot**: ![Project Screenshot](#)
+- **Technologies Used**: Vue.js, Node.js, Tailwind CSS
+- **Status**: In Progress / Completed

@@ -4,8 +4,12 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="currentColor"
-      class="medium-icon"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-medium"
   >
     <g>
       <circle cx="6.5" cy="12.5" r="4.5" />

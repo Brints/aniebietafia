@@ -184,7 +184,7 @@ const getLevelColor = (level: SkillLevel): string => {
 </script>
 
 <template>
-  <section class="p-6 md:p-12 bg-gray-900 text-gray-300">
+  <section class="font-lora p-6 md:p-12 bg-gray-900 text-gray-300">
     <!-- Title -->
     <BracketLikeCurve title="Skills" :animated="false"/>
 
@@ -202,8 +202,8 @@ const getLevelColor = (level: SkillLevel): string => {
       <div class="flex flex-col">
         <label class="text-sm text-gray-400 mb-2">Filter by Category</label>
         <select
-          v-model="selectedFilter"
-          class="bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-gray-300 focus:border-indigo-500 focus:outline-none"
+            v-model="selectedFilter"
+            class="bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-gray-300 focus:border-indigo-500 focus:outline-none"
         >
           <option v-for="option in filterOptions" :key="option.value" :value="option.value">
             {{ option.label }}
@@ -214,8 +214,8 @@ const getLevelColor = (level: SkillLevel): string => {
       <div class="flex flex-col">
         <label class="text-sm text-gray-400 mb-2">Filter by Level</label>
         <select
-          v-model="selectedLevel"
-          class="bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-gray-300 focus:border-indigo-500 focus:outline-none"
+            v-model="selectedLevel"
+            class="bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-gray-300 focus:border-indigo-500 focus:outline-none"
         >
           <option v-for="option in levelOptions" :key="option.value" :value="option.value">
             {{ option.label }}
@@ -227,21 +227,21 @@ const getLevelColor = (level: SkillLevel): string => {
     <!-- Skills Grid -->
     <div class="grid gap-6 md:gap-8 grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
       <div
-        v-for="(category, key, index) in filteredSkills"
-        :key="key"
-        class="animate-fade-in-up"
-        :style="`animation-delay: ${index * 0.1}s`"
+          v-for="(category, key, index) in filteredSkills"
+          :key="key"
+          class="animate-fade-in-up"
+          :style="`animation-delay: ${index * 0.1}s`"
       >
         <BaseCard
-          v-if="category"
-          customClass="h-full transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20"
-          customStyle="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border: 1px solid rgba(99, 102, 241, 0.2);"
+            v-if="category"
+            customClass="h-full transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20"
+            customStyle="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border: 1px solid rgba(99, 102, 241, 0.2);"
         >
           <!-- Category Header -->
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center gap-3">
               <span class="text-2xl">{{ category.icon }}</span>
-              <h3 class="text-xl font-bold text-white">{{ category.title }}</h3>
+              <h3 class="font-roboto text-xl font-bold text-white">{{ category.title }}</h3>
             </div>
             <div class="bg-indigo-500/20 px-3 py-1 rounded-full">
               <span class="text-indigo-300 text-sm font-medium">{{ category.skills.length }} skills</span>
@@ -251,10 +251,10 @@ const getLevelColor = (level: SkillLevel): string => {
           <!-- Skills List -->
           <div class="space-y-4">
             <div
-              v-for="(skill, skillIndex) in category.skills"
-              :key="skill.name"
-              class="group relative bg-gray-800/50 rounded-lg p-4 hover:bg-gray-700/50 transition-all duration-300 animate-slide-in-left"
-              :style="`animation-delay: ${((index as number) * 0.1) + ((skillIndex as number) * 0.05)}s`"
+                v-for="(skill, skillIndex) in category.skills"
+                :key="skill.name"
+                class="group relative bg-gray-800/50 rounded-lg p-4 hover:bg-gray-700/50 transition-all duration-300 animate-slide-in-left"
+                :style="`animation-delay: ${((index as number) * 0.1) + ((skillIndex as number) * 0.05)}s`"
             >
               <!-- Skill Header -->
               <div class="flex items-center justify-between mb-3">
@@ -276,18 +276,18 @@ const getLevelColor = (level: SkillLevel): string => {
               <div class="relative">
                 <div class="w-full bg-gray-700 rounded-full h-2">
                   <div
-                    :class="getLevelColor(skill.level as SkillLevel)"
-                    class="h-2 rounded-full transition-all duration-1000 ease-out"
-                    :style="`width: ${(skill.level / 5) * 100}%; animation-delay: ${((index as number) * 0.2) + ((skillIndex as number) * 0.1)}s`"
+                      :class="getLevelColor(skill.level as SkillLevel)"
+                      class="h-2 rounded-full transition-all duration-1000 ease-out"
+                      :style="`width: ${(skill.level / 5) * 100}%; animation-delay: ${((index as number) * 0.2) + ((skillIndex as number) * 0.1)}s`"
                   ></div>
                 </div>
                 <!-- Stars -->
                 <div class="flex gap-1 mt-2">
                   <span
-                    v-for="star in 5"
-                    :key="star"
-                    class="text-lg transition-colors duration-200"
-                    :class="star <= skill.level ? 'text-yellow-400' : 'text-gray-600'"
+                      v-for="star in 5"
+                      :key="star"
+                      class="text-lg transition-colors duration-200"
+                      :class="star <= skill.level ? 'text-yellow-400' : 'text-gray-600'"
                   >
                     ★
                   </span>
@@ -339,6 +339,10 @@ const getLevelColor = (level: SkillLevel): string => {
 .font-lora {
   font-family: "Lora", serif;
   font-weight: 400;
+}
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
 }
 
 /* Enhanced Animations */

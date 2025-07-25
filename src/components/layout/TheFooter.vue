@@ -3,6 +3,7 @@ import { computed } from "vue";
 import TwitterIcon from "../icons/TwitterIcon.vue";
 import LinkedInIcon from "../icons/LinkedInIcon.vue";
 import GitHubIcon from "../icons/GitHubIcon.vue";
+import MediumIcon from "../icons/MediumIcon.vue";
 
 const currentYear = computed(() => new Date().getFullYear());
 const currentMonth = computed(() => {
@@ -35,12 +36,20 @@ const socialLinks = [
     color: "hover:text-gray-300",
     description: "View my code repositories"
   },
+  {
+    name: "Medium",
+    url: "https://medium.com/@aniebietafia",
+    icon: MediumIcon,
+    color: "hover:text-green-400",
+    description: "Read my articles on Medium"
+  }
 ];
 
 const quickLinks = [
   { name: "About", to: "about" },
   { name: "Projects", to: "projects" },
   { name: "Elevator Pitch", to: "elevator-pitch" },
+  { name: "Blogs", to: "blogs" },
   { name: "Skills", to: "skills" },
   { name: "Certifications", to: "certifications" },
   { name: "Contact", to: "contact" }
@@ -56,7 +65,7 @@ const scrollToTop = () => {
 
 <template>
   <!-- Enhanced footer section -->
-  <footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+  <footer class="font-lora bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
     <!-- Background pattern -->
     <div class="absolute inset-0 opacity-5">
       <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-amber-500/20"></div>
@@ -77,7 +86,7 @@ const scrollToTop = () => {
 
           <!-- Brand section -->
           <div class="space-y-4">
-            <div class="flex items-center gap-2">
+            <div class="font-roboto flex items-center gap-2">
               <div class="text-2xl font-bold">
                 <span class="text-indigo-400">&lt;</span>
                 <span class="text-white">Aniebiet</span>
@@ -209,5 +218,14 @@ html {
 
 .group:hover .w-5 {
   animation: float 2s ease-in-out infinite;
+}
+
+.font-lora {
+  font-family: "Lora", serif;
+  font-weight: 400;
+}
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
 }
 </style>

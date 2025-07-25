@@ -21,7 +21,7 @@ function toggleMobileMenu() {
     <div class="hidden md:flex items-center space-x-8">
       <NavLinks />
       <img
-        src="../../assets/images/dp.jpg"
+        src="https://res.cloudinary.com/aniebietafia/image/upload/v1753433370/younger_f4hjkf.png"
         alt="Profile"
         class="h-10 w-10 rounded-full object-cover"
       />

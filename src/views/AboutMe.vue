@@ -56,7 +56,7 @@ import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
             stroke-dashoffset="500"
             class="text-6xl font-bold text-gray-500"
         >
-          ABOUT ME | ANIEBIET AFIA
+          ABOUT ME
           <!-- Text Drawing Animation - Draw in -->
           <animate
               attributeName="stroke-dashoffset"

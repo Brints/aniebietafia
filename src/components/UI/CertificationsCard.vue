@@ -1,49 +1,8 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
 import { computed } from "vue";
+import type { Certification } from "../../interfaces/certification.ts";
 
-const props = defineProps({
-  link: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  alt: {
-    type: String,
-    required: true,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  issuer: {
-    type: String,
-    required: true,
-  },
-  dateEarned: {
-    type: String,
-    required: true,
-  },
-  expirationDate: {
-    type: String,
-    required: false,
-  },
-  credentialId: {
-    type: String,
-    required: false,
-  },
-  skills: {
-    type: Array as () => string[],
-    required: true,
-  },
-});
+const props = defineProps<Certification>();
 
 const imageSrc = computed(() => {
   return `https://res.cloudinary.com/aniebietafia/image/upload/v1752795445/certifications/${props.image}`;
@@ -60,7 +19,7 @@ const isExpiringSoon = computed(() => {
 
 <!-- Certifications Card -->
 <template>
-  <div class="flex flex-col bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-700 hover:border-indigo-500">
+  <div class="font-lora flex flex-col bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-700 hover:border-indigo-500">
     <!-- Certificate Image -->
     <div class="relative">
       <img :src="imageSrc" :alt="alt" class="w-full h-48 object-cover" />

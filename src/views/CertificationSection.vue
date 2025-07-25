@@ -46,6 +46,7 @@ import { certifications } from "../data/certifications";
       <CertificationsCard
         v-for="certification in certifications"
         :key="certification.id"
+        :id="certification.id"
         :title="certification.title"
         :description="certification.description"
         :link="certification.link"
@@ -65,9 +66,5 @@ import { certifications } from "../data/certifications";
 .font-lora {
   font-family: "Lora", serif;
   font-weight: 400;
-}
-.font-roboto {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
 }
 </style>

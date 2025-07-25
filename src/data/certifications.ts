@@ -10,19 +10,22 @@ export const certifications: Certification[] = [
     image: 'Software_Engineering_Certificate_aj3pra.png',
     alt: 'ALX Software Engineering Certificate',
     dateEarned: '2023',
-    skills: ['Full-Stack Development', 'System Design', 'Software Engineering', 'Problem Solving']
+    skills: ['Full-Stack Development', 'System Design', 'Software Engineering', 'Problem Solving'],
+    credentialId: "https://alx-intranet.hbtn.io/certificates/hJzFMs5SX2",
+    expirationDate: '',
   },
   {
     id: 'altschool-africa',
     title: 'Backend Engineering Certification',
     description: 'Advanced backend engineering program focusing on system design, data structures, algorithms, and backend technologies. Hands-on experience with Node.js, Express, MongoDB, and Redis.',
     issuer: 'AltSchool Africa',
-    link: 'https://res.cloudinary.com/aniebietafia/image/upload/v1752945444/certifications/altschool_africa_certificate_jekunr.jpg', // Replace with actual certification link
+    link: 'https://res.cloudinary.com/aniebietafia/image/upload/v1752945444/certifications/altschool_africa_certificate_jekunr.jpg',
     image: 'altschool_africa_certificate_jekunr.jpg',
     alt: 'AltSchool Africa Backend Engineering Certificate',
     dateEarned: '2023',
     expirationDate: '',
     skills: ['System Design', 'Problem Solving', 'Data Structures', 'Algorithms', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'Redis'],
+    credentialId: 'REF-Fti5gr8dn07iwMkOXF',
   },
   {
     id: 'udemy-angular',

@@ -2,10 +2,11 @@ import type { Blog } from "../interfaces/blog.ts";
 
 export const blogs: Blog[] = [
   {
+    id: "1",
     title: "Building a Document Management System with Spring Boot",
     description: "A comprehensive guide on creating a document management system using Spring Boot, covering architecture, design patterns, and best practices.",
     content: "In this blog post, we will explore how to build a robust document management system using Spring Boot. We will cover the architecture, design patterns, and best practices to ensure scalability and maintainability.",
-    image: "/images/blogs/document-management-system.jpg",
+    image: "https://res.cloudinary.com/aniebietafia/image/upload/v1753433385/ocr-img_py25fb.jpg",
     alt: "Document Management System",
     link: "https://example.com/blog/document-management-system",
     datePublished: "2023-10-01",
@@ -16,6 +17,7 @@ export const blogs: Blog[] = [
     comments: 45
   },
   {
+    id: "2",
     title: "Optimizing OCR Accuracy in Document Processing",
     description: "Techniques and tools to enhance OCR accuracy in document processing applications.",
     content: "This article discusses various techniques and tools that can be used to improve OCR accuracy in document processing applications. We will explore different OCR libraries, preprocessing techniques, and post-processing methods.",

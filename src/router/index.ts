@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router"
 const AboutMe = () => import("../views/AboutMe.vue");
 const ProjectsSection = () => import("../views/ProjectsSection.vue");
 const ElevatorPitch = () => import("../views/ElevatorPitch.vue");
+const Blogs = () => import("../views/Blogs.vue");
 const TheSkills = () => import("../views/TheSkills.vue");
 const CertificationSection = () => import("../views/CertificationSection.vue");
 const ContactMe = () => import("../views/ContactMe.vue");
@@ -12,6 +13,7 @@ const routes: Array<RouteRecordRaw> = [
     { path: '/about', name: 'about', component: AboutMe },
     { path: '/projects', name: 'projects', component: ProjectsSection },
     { path: '/elevator-pitch', name: 'elevator-pitch', component: ElevatorPitch },
+    { path: '/blogs', name: 'blogs', component: Blogs },
     { path: '/skills', name: 'skills', component: TheSkills },
     { path: '/certifications', name: 'certifications', component: CertificationSection },
     { path: '/contact', name: 'contact', component: ContactMe },

@@ -11,6 +11,7 @@ const navLinks: NavLink[] = [
   { name: 'About', to: 'about', icon: '🧑‍💻' },
   { name: 'Projects', to: 'projects', icon: '🚀' },
   { name: 'Elevator Pitch', to: 'elevator-pitch', icon: '💡' },
+  { name: 'Blogs', to: 'blogs', icon: '📝' },
   { name: 'Skills', to: 'skills', icon: '⚡' },
   { name: 'Certifications', to: 'certifications', icon: '🏆' },
   { name: 'Contact', to: 'contact', icon: '📧' }

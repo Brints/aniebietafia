@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
+import BracketLikeCurve from "../components/tools/BracketLikeCurve.vue";
 import BaseCard from "../components/UI/BaseCard.vue";
 
 // Type definitions

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import TwitterIcon from "../icons/TwitterIcon.vue";
 import LinkedInIcon from "../icons/LinkedInIcon.vue";
 import GitHubIcon from "../icons/GitHubIcon.vue";
 import MediumIcon from "../icons/MediumIcon.vue";
+import XIcon from "../icons/XIcon.vue";
 
 const currentYear = computed(() => new Date().getFullYear());
 const currentMonth = computed(() => {
@@ -16,11 +16,11 @@ const currentMonth = computed(() => {
 
 const socialLinks = [
   {
-    name: "Twitter",
-    url: "https://twitter.com/teibeina001",
-    icon: TwitterIcon,
+    name: "X",
+    url: "https://x.com/aniebiet_afia",
+    icon: XIcon,
     color: "hover:text-blue-400",
-    description: "Follow me on Twitter"
+    description: "Follow me on X (formerly Twitter)"
   },
   {
     name: "LinkedIn",

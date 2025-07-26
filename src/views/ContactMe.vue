@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import emailjs from "@emailjs/browser";
-import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
+import BracketLikeCurve from "../components/tools/BracketLikeCurve.vue";
 import FormField from "../components/UI/FormField.vue";
 import HandShake from "../svgs/HandShake.vue";
 

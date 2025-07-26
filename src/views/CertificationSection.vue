@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CertificationsCard from "../components/UI/CertificationsCard.vue";
-import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
+import BracketLikeCurve from "../components/tools/BracketLikeCurve.vue";
 import { certifications } from "../data/certifications";
 </script>
 

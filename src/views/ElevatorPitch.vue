@@ -216,7 +216,7 @@ import BracketLikeCurve from "../components/tools/BracketLikeCurve.vue";
           class="absolute top-0 left-0 w-full h-full"
           src="https://www.youtube.com/embed/orzHd6DsSWw"
           title="Elevator Pitch Video"
-          frameborder="0"
+          border="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>

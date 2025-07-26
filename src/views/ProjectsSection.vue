@@ -5,7 +5,7 @@ import ProjectModal from "../components/UI/ProjectModal.vue";
 import ProjectFilter from "../components/UI/ProjectFilter.vue";
 import ExternalLinkButton from "../components/buttons/ExternalLinkButton.vue";
 import TechTools from "../components/buttons/TechTools.vue";
-import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
+import BracketLikeCurve from "../components/tools/BracketLikeCurve.vue";
 import { projects, projectCategories, projectStatuses } from "../data/projects";
 import { type Project } from "../interfaces/project";
 

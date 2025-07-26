@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
+import BracketLikeCurve from "../components/tools/BracketLikeCurve.vue";
 </script>
 
 <template>

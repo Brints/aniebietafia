@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ContactMe from "../components/buttons/ContactMe.vue";
 import ResumeButton from "../components/buttons/ResumeButton.vue";
-import BracketLikeCurve from "../components/unnamed/BracketLikeCurve.vue";
+import BracketLikeCurve from "../components/tools/BracketLikeCurve.vue";
 </script>
 
 <template>
